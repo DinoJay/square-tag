@@ -6,8 +6,8 @@ function constant(_) {
 export default function rectCollide() {
     var nodes, sizes, masses
     var size = constant([0, 0])
-    var strength = 2
-    var iterations = 100
+    var strength = 10
+    var iterations = 5000
 
     function force() {
         var node, size, mass, xi, yi
