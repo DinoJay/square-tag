@@ -29,33 +29,27 @@ const initData = diigo.filter(d => d.tags).map(d => ({...d,
 function App() {
   const [keyData, setKeyData] = useState([ 'all', initData])
 
-  const dictRef = React.useRef(new Map());
-
-  const keys = [ ...dictRef.current.keys() ];
-  useEffect(() => {
-    console.log('dictRef', dictRef.current);
-
-  }, [keys])
+  const dictRef = React.useRef([]);
+  const keys = dictRef.current.map(d => d[0]) ;
+  const spliceData = k => {
+    setKeyData(dictRef.current.find(d => d[0] ===k));
+    dictRef.current
+      .splice(dictRef.current.findIndex(d => d[0] ===k));
+  }
 
 
   return (
     <div className="h-screen w-screen flex flex-col md:px-32 md:pb-8">
       <h1 className="text-3xl m-2">TagVis</h1>
-      <BreadCrumbs keys={keys}/>
+      <BreadCrumbs keys={keys} onSplice={spliceData}/>
       <div className="flex-grow flex flex-col ">
         <TagCloud selectedKeys={keys}
-          className="mb-3" data={keyData[1]} initData={initData}
+          className="mb-3 pr-3" data={keyData[1]} initData={initData}
           setData={([k, newData])=> {
             setKeyData([k, newData])
-            dictRef.current.set(k, keyData[1])
-            console.log('dictRef.curr', dictRef.current);
+            dictRef.current.push([k, keyData[1]])
           }}
-          resetData={(k) => {
-
-            setKeyData([k, dictRef.current.get(k)]);
-            dictRef.current.delete(k);
-            console.log('resetData', Object.values(dictRef.current))
-          }} />
+          resetData={spliceData} />
         <TimeLine selectedKey={keyData[0]} data={keyData[1]}/>
     </div>
       <Grid className="h-64 mt-4" data={keyData[1]} />

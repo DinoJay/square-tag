@@ -11,11 +11,12 @@ import {scaleLinear, treemap, extent, hierarchy}  from 'd3';
 import treemapSpiral from './treemapSpiral';
 import {group} from 'd3-array'
 import clsx from 'clsx';
+import { ZoomIn, X } from 'react-feather';
 import useMeasure from './useMeasure';
 
 
 const TagDetail = (props)=> {
-  const {datum, smallScreen, className, size}=props;
+  const {datum, smallScreen, className, onClose, size}=props;
 
   const pad=30
   const radius = size/2 -pad;
@@ -33,6 +34,7 @@ const TagDetail = (props)=> {
   const arcs = pie(nested);
 
   return <div className={ clsx( "h-full w-full relative flex flex-col items-between", className ) }>
+    <button className="z-10"onClick={onClose}><X/></button>
     <h2 className={clsx("p-2 text-left", smallScreen ? 'text-xl': 'text-2xl' )}>#{datum.key}</h2>
     <svg className="absolute" width={size} height={size}>
       <g transform={`translate(${size/2}, ${size/2})`}>
@@ -50,15 +52,21 @@ const TagDetail = (props)=> {
 }
 
 const TagCont = (props) => {
-  const {extended:ext, selected, datum, left, top, width, smallScreen, height, id, onClick, data}=props;
+  const {extended:ext, selected, datum, left, top, width, smallScreen,
+    height, id, onSelect, data, onOpen, onReset, onClose}=props;
 
   // const fData = data.filter(d =>d.tags.includes(datum.key))
 
   const [bind, {width:w, height:h}] = useMeasure();
 
+  const onClick = (e)=>  {
+    e.stopPropagation();
+    if(ext) return null
+    selected ? onReset(datum.key) : onSelect(datum.key);
+  }
 
   const s = 60; //Math.min(100,20+fData.length )
-  return <div {...bind} onClick={()=> !ext ? onClick(datum.key):onClick(null)}
+  return <div {...bind} onClick={onClick}
     style={{
       left: ext? width/2: left,
       top: ext ? height/2:top,
@@ -74,13 +82,21 @@ const TagCont = (props) => {
           <TagDetail
             key={datum.key}
             datum={datum}
+            onClose={onClose}
             smallScreen={smallScreen}
             size={w}
           /> :
-          <div className="h-full flex">
+          <div className="h-full flex w-full items-center">
             <div
-              className={ clsx( "m-auto truncate p-1", smallScreen ? 'text-xl': 'text-2xl' ) }>
-              {datum.key}
+              className={ clsx( "w-full truncate p-1 flex", smallScreen ? 'text-xl': 'text-2xl' ) }>
+                <div className="m-auto truncate flex-shrink"
+                  style={{minWidth:0}}>{datum.key}</div>
+
+              {selected &&
+                <button onClick={(e) => {
+                  e.stopPropagation();
+                  onOpen();
+                }} className="mr-3 flex items-center"  ><ZoomIn/></button> }
             </div>
           </div>
         }
@@ -145,7 +161,6 @@ export default function TagCloud(props) {
       .map(d => ({...d, weight:d.values.length **2 }))
       .sort((a,b) => b.weight-a.weight)
 
-
     const treeFn = nodes =>  makeTreemap({data: nodes.slice(0, smallScreen ? 25:75), width, height, padX:25, padY: 35, key})
 
     setTiles(treeFn(nodes));
@@ -155,18 +170,22 @@ export default function TagCloud(props) {
   // console.log('selNode', selNode);
 
   const filterByTag = k => {
-    selectedKeys.includes(k) ? resetData(k) : setData([ k, data.filter(d => d.tags.includes(k)) ]);
+    setData([ k, data.filter(d => d.tags.includes(k)) ]);
   }
-
-  // console.log('selectedKeys', selectedKeys);
 
   return <div {...bind} className={clsx("relative overflow-y-auto flex-grow", className)}>
     {selNode && <div>{selNode.datum.id} </div>}
     <div style={{width, height}}>
-      {tiles.map(d => <TagCont selected={selectedKeys.includes(d.key)}smallScreen={smallScreen} {...d} data={data} onClick={filterByTag} id={d.key}
-        selected={key===d.datum.key}/>)}
+      {tiles.map(d =>
+        <TagCont selected={selectedKeys.includes(d.datum.key)}
+          smallScreen={smallScreen} {...d} extended={d.datum.key===key} data={data}
+          onSelect={() => filterByTag(d.datum.key)}
+          onReset={() => resetData(d.datum.key)}
+          onOpen={() => setKey(d.datum.key)}
+          onClose={() => setKey(null)}
+          id={d.key}
+        />)}
     </div>
-
   </div>
 }
 
