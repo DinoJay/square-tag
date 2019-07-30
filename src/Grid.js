@@ -17,7 +17,7 @@ export default function Grid(props) {
       <button className={ clsx("m-1 border-2 border-gray p-1", startPage===d && 'bg-gray-600') } onClick={() => setStartPage(d)}>{d}</button>)}
     </div>
     <ol className={clsx(  'flex-grow overflow-y-auto py-4 px-8 list-decimal text-left')}>
-      {data.slice(startPage * maxCount, startPage*maxCount+maxCount).map(d => <li className="my-1 border-b text-gray-800">{d.title}</li>)}
+      {data.slice(startPage * maxCount, startPage*maxCount+maxCount).map(d => <li className="my-1 border-b text-gray-800"><a href={d.url}>{d.title}</a></li>)}
   </ol>
     </div>
 }

@@ -27,7 +27,7 @@ const initData = diigo.filter(d => d.tags).map(d => ({...d,
 
 
 function App() {
-  const [keyData, setKeyData] = useState([ 'all', initData])
+  const [keyData, setKeyData] = useState([ 'all', initData, null])
 
   const dictRef = React.useRef([]);
   const keys = dictRef.current.map(d => d[0]) ;
@@ -50,7 +50,10 @@ function App() {
             dictRef.current.push([k, keyData[1]])
           }}
           resetData={spliceData} />
-        <TimeLine selectedKey={keyData[0]} data={keyData[1]}/>
+        <TimeLine
+          onClick={()=>
+              setKeyData([keyData[0], keyData[1].slice(0, 20)])}
+              selectedKey={keyData[0]} data={keyData[1]}/>
     </div>
       <Grid className="h-64 mt-4" data={keyData[1]} />
     </div>

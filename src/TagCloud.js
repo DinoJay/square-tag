@@ -11,7 +11,7 @@ import {scaleLinear, treemap, extent, hierarchy}  from 'd3';
 import treemapSpiral from './treemapSpiral';
 import {group} from 'd3-array'
 import clsx from 'clsx';
-import { ZoomIn, X } from 'react-feather';
+import { Plus, Minus, X } from 'react-feather';
 import useMeasure from './useMeasure';
 
 
@@ -24,7 +24,7 @@ const TagDetail = (props)=> {
   const innerRadPad = 10;
   const arc = d3.arc().innerRadius(innerRad).outerRadius(radius - 1);
   const spread = datum.values.map(d => d.tags.map(tag => ({...d, tag}))).flat();
-  const nested = Array.from(group(spread, d=> d.tag), ([ key, value ]) => ({key, value}));
+  const nested = Array.from(group(spread, d=> d.tag), ([ key, value ]) => ({key, value})).filter(d =>d.key !==datum.key)
 
   const pie = d3.pie()
     .padAngle(0.0105)
@@ -33,17 +33,27 @@ const TagDetail = (props)=> {
 
   const arcs = pie(nested);
 
-  return <div className={ clsx( "h-full w-full relative flex flex-col items-between", className ) }>
-    <button className="z-10"onClick={onClose}><X/></button>
-    <h2 className={clsx("p-2 text-left", smallScreen ? 'text-xl': 'text-2xl' )}>#{datum.key}</h2>
+  return <div
+    className={ clsx(`h-full w-full relative flex flex-col
+      items-between`, className ) }>
+      <div className="flex justify-between">
+        <h2
+          className={
+            clsx("p-2 text-left", smallScreen ? 'text-xl': 'text-2xl' )}>
+          #{datum.key}
+        </h2>
+        <button className="z-10 mx-2 my-1" onClick={onClose}><X/></button>
+    </div>
     <svg className="absolute" width={size} height={size}>
       <g transform={`translate(${size/2}, ${size/2})`}>
+        <text>d3</text>
         {arcs.map(d => <path
           className="fill-current text-red-500" d={arc(d)}/>)
         }
       </g>
     </svg>
-    <div className="absolute flex items-center justify-center h-full w-full">
+    <div
+      className="absolute flex items-center justify-center h-full w-full">
       <Force
         width={innerRad *2 - innerRadPad} height={innerRad*2 - innerRadPad}
         data={datum.values}/>
@@ -62,7 +72,7 @@ const TagCont = (props) => {
   const onClick = (e)=>  {
     e.stopPropagation();
     if(ext) return null
-    selected ? onReset(datum.key) : onSelect(datum.key);
+    !selected && onSelect(datum.key);
   }
 
   const s = 60; //Math.min(100,20+fData.length )
@@ -76,7 +86,7 @@ const TagCont = (props) => {
       transition: 'all 400ms',
       boxShadow: '5px 5px gray'
     }}
-        className={clsx( "m-auto bg-red-100 border-2 border-black" , ext ? 'z-50 fixed': 'z-10 absolute', selected ? 'bg-red-600': 'bg-red-100') }>
+        className={clsx( "m-auto bg-red-100 border-2 border-black" , ext ? 'z-50 fixed': 'z-10 absolute', selected && !ext ? 'bg-red-600': 'bg-red-100') }>
 
         {ext ?
           <TagDetail
@@ -89,6 +99,12 @@ const TagCont = (props) => {
           <div className="h-full flex w-full items-center">
             <div
               className={ clsx( "w-full truncate p-1 flex", smallScreen ? 'text-xl': 'text-2xl' ) }>
+
+              {selected &&
+                <button onClick={(e) => {
+                  e.stopPropagation();
+                  onReset();
+                }} className="mr-3 flex items-center"  ><Minus/></button> }
                 <div className="m-auto truncate flex-shrink"
                   style={{minWidth:0}}>{datum.key}</div>
 
@@ -96,7 +112,7 @@ const TagCont = (props) => {
                 <button onClick={(e) => {
                   e.stopPropagation();
                   onOpen();
-                }} className="mr-3 flex items-center"  ><ZoomIn/></button> }
+                }} className="mr-3 flex items-center"  ><Plus/></button> }
             </div>
           </div>
         }
