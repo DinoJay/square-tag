@@ -42,7 +42,11 @@ function App() {
     <div className="h-screen w-screen flex flex-col md:px-32 md:pb-8">
       <h1 className="text-3xl m-2">TagVis</h1>
       <BreadCrumbs keys={keys} onSplice={spliceData}/>
-      <div className="flex-grow flex flex-col ">
+      <TimeLine
+        onClick={()=>
+            setKeyData([keyData[0], keyData[1].slice(0, 20)])}
+            selectedKey={keyData[0]} data={keyData[1]}/>
+      <div className="flex-grow flex sm:flex-row flex-col ">
         <TagCloud selectedKeys={keys}
           className="mb-3 pr-3" data={keyData[1]} initData={initData}
           setData={([k, newData])=> {
@@ -50,12 +54,8 @@ function App() {
             dictRef.current.push([k, keyData[1]])
           }}
           resetData={spliceData} />
-        <TimeLine
-          onClick={()=>
-              setKeyData([keyData[0], keyData[1].slice(0, 20)])}
-              selectedKey={keyData[0]} data={keyData[1]}/>
+        <Grid className="flex-grow h-full mt-4" style={{ maxWidth: 400, }} data={keyData[1]} />
     </div>
-      <Grid className="h-64 mt-4" data={keyData[1]} />
     </div>
   );
 }

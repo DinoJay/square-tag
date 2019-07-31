@@ -1,9 +1,10 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import myForce from './myForce';
-import radial from 'd3-radial';
+// import myForce from './myForce';
+// import radial from 'd3-radial';
 import rectCollide from './rectCollide';
-import boundedBox from './boundedBox';
-import TSNE from './TSNE';
+import sortBy from 'lodash/sortBy';
+// import boundedBox from './boundedBox';
+// import TSNE from './TSNE';
 import Force from './Force';
 import './App.css';
 import * as d3 from 'd3';
@@ -19,9 +20,10 @@ const TagDetail = (props)=> {
   const {datum, smallScreen, className, onClose, size}=props;
 
   const pad=30
-  const radius = size/2 -pad;
+  const [bind, {width:w, height:h}] = useMeasure();
+  const radius = w/2 -pad;
   const innerRad = radius * 0.67;
-  const innerRadPad = 10;
+  const innerRadPad = 0;
   const arc = d3.arc().innerRadius(innerRad).outerRadius(radius - 1);
   const spread = datum.values.map(d => d.tags.map(tag => ({...d, tag}))).flat();
   const nested = Array.from(group(spread, d=> d.tag), ([ key, value ]) => ({key, value})).filter(d =>d.key !==datum.key)
@@ -32,6 +34,8 @@ const TagDetail = (props)=> {
     .value(d => d.value.length)
 
   const arcs = pie(nested);
+
+  console.log('arcs', arcs);
 
   return <div
     className={ clsx(`h-full w-full relative flex flex-col
@@ -44,19 +48,30 @@ const TagDetail = (props)=> {
         </h2>
         <button className="z-10 mx-2 my-1" onClick={onClose}><X/></button>
     </div>
-    <svg className="absolute" width={size} height={size}>
-      <g transform={`translate(${size/2}, ${size/2})`}>
-        <text>d3</text>
-        {arcs.map(d => <path
-          className="fill-current text-red-500" d={arc(d)}/>)
-        }
-      </g>
-    </svg>
-    <div
-      className="absolute flex items-center justify-center h-full w-full">
-      <Force
-        width={innerRad *2 - innerRadPad} height={innerRad*2 - innerRadPad}
-        data={datum.values}/>
+    <div className="z-50 absolute bottom-0 flex flex-wrap bg-white">
+      {nested.slice(0,10).map(d => <div className="mr-1">#{d.key}</div>)}
+      <button className="font-bold">More...</button>
+    </div>
+    <div {...bind}className="flex flex-col flex-grow relative z-20">
+      <svg  className="flex-grow" >
+        <g transform={`translate(${size/2}, ${size/2 -30})`}>
+          {arcs.map(d => <path
+            className="fill-current text-red-500" d={arc(d)}/>)
+          }
+          {arcs.map(d => <text
+            dy="0.33em"
+            x={arc.centroid(d)[0]}
+y={arc.centroid(d)[1]}
+className="" >{d.data.key} </text>)
+          }
+        </g>
+      </svg>
+      <div
+        className="absolute flex items-center justify-center h-full w-full">
+        <Force
+          width={innerRad *2 - innerRadPad} height={innerRad*2 - innerRadPad}
+          data={datum.values}/>
+      </div>
     </div>
   </div>
 }
@@ -75,7 +90,7 @@ const TagCont = (props) => {
     !selected && onSelect(datum.key);
   }
 
-  const s = 60; //Math.min(100,20+fData.length )
+  const s = 80; //Math.min(100,20+fData.length )
   return <div {...bind} onClick={onClick}
     style={{
       left: ext? width/2: left,
@@ -86,7 +101,7 @@ const TagCont = (props) => {
       transition: 'all 400ms',
       boxShadow: '5px 5px gray'
     }}
-        className={clsx( "m-auto bg-red-100 border-2 border-black" , ext ? 'z-50 fixed': 'z-10 absolute', selected && !ext ? 'bg-red-600': 'bg-red-100') }>
+        className={clsx( "m-auto bg-red-100 border-2 border-black" , ext ? 'z-50 fixed': 'z-10 absolute', selected && !ext ? 'bg-red-400': 'bg-red-100') }>
 
         {ext ?
           <TagDetail
@@ -96,7 +111,7 @@ const TagCont = (props) => {
             smallScreen={smallScreen}
             size={w}
           /> :
-          <div className="h-full flex w-full items-center">
+          <button className="h-full flex w-full items-center">
             <div
               className={ clsx( "w-full truncate p-1 flex", smallScreen ? 'text-xl': 'text-2xl' ) }>
 
@@ -114,7 +129,7 @@ const TagCont = (props) => {
                   onOpen();
                 }} className="mr-3 flex items-center"  ><Plus/></button> }
             </div>
-          </div>
+          </button>
         }
       </div>
 }
@@ -128,11 +143,11 @@ var collisionForce = rectCollide()
   .size(d => ( [d.size+pad/2, d.size+pad/2] ) )
 
 
-function makeTreemap({data, width, height, padX, padY, key}) {
+function makeTreemap({data, width, height, padX, padY, key, selectedKeys}) {
   const ratio = 1.5;
   const h = !key ? data.length* 10: data.length*20;
 
-  const sorted = data.sort((a, b) => a.weight - b.weight);
+  const sorted = sortBy(data, a => !selectedKeys.includes(a.key));
   const myTreeMap = treemap()
     .size([width / ratio , h])
     .paddingInner(0)
@@ -177,10 +192,10 @@ export default function TagCloud(props) {
       .map(d => ({...d, weight:d.values.length **2 }))
       .sort((a,b) => b.weight-a.weight)
 
-    const treeFn = nodes =>  makeTreemap({data: nodes.slice(0, smallScreen ? 25:75), width, height, padX:25, padY: 35, key})
+    const treeFn = nodes =>  makeTreemap({data: nodes.slice(0, smallScreen ? 25:75), width, height, padX:25, padY: 35, key, selectedKeys})
 
     setTiles(treeFn(nodes));
-  }, [width, height, smallScreen, data, data.length, key])
+  }, [width, height, smallScreen, data, data.length, key, selectedKeys])
 
   const selNode = key && tiles.find(d => d.datum.key === key);
   // console.log('selNode', selNode);
