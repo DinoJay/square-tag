@@ -15,6 +15,10 @@ import clsx from 'clsx';
 import { Plus, Minus, X } from 'react-feather';
 import useMeasure from './useMeasure';
 
+  function angle(d) {
+      var a = (d.startAngle + d.endAngle) * 90 / Math.PI - 90;
+      return a > 90 ? a - 180 : a;
+    }
 
 const TagDetail = (props)=> {
   const {datum, smallScreen, className, onClose, size}=props;
@@ -22,7 +26,7 @@ const TagDetail = (props)=> {
   const pad=30
   const [bind, {width:w, height:h}] = useMeasure();
   const radius = w/2 -pad;
-  const innerRad = radius * 0.67;
+  const innerRad = radius * 0.57;
   const innerRadPad = 0;
   const arc = d3.arc().innerRadius(innerRad).outerRadius(radius - 1);
   const spread = datum.values.map(d => d.tags.map(tag => ({...d, tag}))).flat();
@@ -33,7 +37,7 @@ const TagDetail = (props)=> {
     .sort(null)
     .value(d => d.value.length)
 
-  const arcs = pie(nested);
+  const arcs = pie(nested.slice(0, 10));
 
   console.log('arcs', arcs);
 
@@ -56,12 +60,12 @@ const TagDetail = (props)=> {
       <svg  className="flex-grow" >
         <g transform={`translate(${size/2}, ${size/2 -30})`}>
           {arcs.map(d => <path
-            className="fill-current text-red-500" d={arc(d)}/>)
+            className="fill-current text-red-400" d={arc(d)}/>)
           }
           {arcs.map(d => <text
             dy="0.33em"
-            x={arc.centroid(d)[0]}
-y={arc.centroid(d)[1]}
+            textAnchor="middle"
+            transform={`translate(${arc.centroid(d)}) rotate(${angle(d)})`}
 className="" >{d.data.key} </text>)
           }
         </g>
