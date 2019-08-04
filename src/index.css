@@ -454,7 +454,7 @@ html {
 *::after {
   border-width: 0;
   border-style: solid;
-  border-color: #e2e8f0;
+  border-color: #a36a9d;
 }
 
 /**
@@ -650,7 +650,7 @@ video {
 }
 
 .bg-black {
-  background-color: #000;
+  background-color: #4a4a4a;
 }
 
 .bg-white {
@@ -710,7 +710,7 @@ video {
 }
 
 .bg-red-500 {
-  background-color: #f56565;
+  background-color: #f47b66;
 }
 
 .bg-red-600 {
@@ -766,7 +766,7 @@ video {
 }
 
 .bg-yellow-100 {
-  background-color: #fffff0;
+  background-color: #fffcdd;
 }
 
 .bg-yellow-200 {
@@ -838,7 +838,7 @@ video {
 }
 
 .bg-teal-100 {
-  background-color: #e6fffa;
+  background-color: #E6FFFA;
 }
 
 .bg-teal-200 {
@@ -1017,12 +1017,20 @@ video {
   background-color: #702459;
 }
 
+.bg-mypink {
+  background-color: #a36a9d;
+}
+
+.bg-myLightRed {
+  background-color: #fac6c8;
+}
+
 .hover\:bg-transparent:hover {
   background-color: transparent;
 }
 
 .hover\:bg-black:hover {
-  background-color: #000;
+  background-color: #4a4a4a;
 }
 
 .hover\:bg-white:hover {
@@ -1082,7 +1090,7 @@ video {
 }
 
 .hover\:bg-red-500:hover {
-  background-color: #f56565;
+  background-color: #f47b66;
 }
 
 .hover\:bg-red-600:hover {
@@ -1138,7 +1146,7 @@ video {
 }
 
 .hover\:bg-yellow-100:hover {
-  background-color: #fffff0;
+  background-color: #fffcdd;
 }
 
 .hover\:bg-yellow-200:hover {
@@ -1210,7 +1218,7 @@ video {
 }
 
 .hover\:bg-teal-100:hover {
-  background-color: #e6fffa;
+  background-color: #E6FFFA;
 }
 
 .hover\:bg-teal-200:hover {
@@ -1389,12 +1397,20 @@ video {
   background-color: #702459;
 }
 
+.hover\:bg-mypink:hover {
+  background-color: #a36a9d;
+}
+
+.hover\:bg-myLightRed:hover {
+  background-color: #fac6c8;
+}
+
 .focus\:bg-transparent:focus {
   background-color: transparent;
 }
 
 .focus\:bg-black:focus {
-  background-color: #000;
+  background-color: #4a4a4a;
 }
 
 .focus\:bg-white:focus {
@@ -1454,7 +1470,7 @@ video {
 }
 
 .focus\:bg-red-500:focus {
-  background-color: #f56565;
+  background-color: #f47b66;
 }
 
 .focus\:bg-red-600:focus {
@@ -1510,7 +1526,7 @@ video {
 }
 
 .focus\:bg-yellow-100:focus {
-  background-color: #fffff0;
+  background-color: #fffcdd;
 }
 
 .focus\:bg-yellow-200:focus {
@@ -1582,7 +1598,7 @@ video {
 }
 
 .focus\:bg-teal-100:focus {
-  background-color: #e6fffa;
+  background-color: #E6FFFA;
 }
 
 .focus\:bg-teal-200:focus {
@@ -1761,6 +1777,14 @@ video {
   background-color: #702459;
 }
 
+.focus\:bg-mypink:focus {
+  background-color: #a36a9d;
+}
+
+.focus\:bg-myLightRed:focus {
+  background-color: #fac6c8;
+}
+
 .bg-bottom {
   background-position: bottom;
 }
@@ -1846,7 +1870,7 @@ video {
 }
 
 .border-black {
-  border-color: #000;
+  border-color: #4a4a4a;
 }
 
 .border-white {
@@ -1906,7 +1930,7 @@ video {
 }
 
 .border-red-500 {
-  border-color: #f56565;
+  border-color: #f47b66;
 }
 
 .border-red-600 {
@@ -1962,7 +1986,7 @@ video {
 }
 
 .border-yellow-100 {
-  border-color: #fffff0;
+  border-color: #fffcdd;
 }
 
 .border-yellow-200 {
@@ -2034,7 +2058,7 @@ video {
 }
 
 .border-teal-100 {
-  border-color: #e6fffa;
+  border-color: #E6FFFA;
 }
 
 .border-teal-200 {
@@ -2213,12 +2237,20 @@ video {
   border-color: #702459;
 }
 
+.border-mypink {
+  border-color: #a36a9d;
+}
+
+.border-myLightRed {
+  border-color: #fac6c8;
+}
+
 .hover\:border-transparent:hover {
   border-color: transparent;
 }
 
 .hover\:border-black:hover {
-  border-color: #000;
+  border-color: #4a4a4a;
 }
 
 .hover\:border-white:hover {
@@ -2278,7 +2310,7 @@ video {
 }
 
 .hover\:border-red-500:hover {
-  border-color: #f56565;
+  border-color: #f47b66;
 }
 
 .hover\:border-red-600:hover {
@@ -2334,7 +2366,7 @@ video {
 }
 
 .hover\:border-yellow-100:hover {
-  border-color: #fffff0;
+  border-color: #fffcdd;
 }
 
 .hover\:border-yellow-200:hover {
@@ -2406,7 +2438,7 @@ video {
 }
 
 .hover\:border-teal-100:hover {
-  border-color: #e6fffa;
+  border-color: #E6FFFA;
 }
 
 .hover\:border-teal-200:hover {
@@ -2585,12 +2617,20 @@ video {
   border-color: #702459;
 }
 
+.hover\:border-mypink:hover {
+  border-color: #a36a9d;
+}
+
+.hover\:border-myLightRed:hover {
+  border-color: #fac6c8;
+}
+
 .focus\:border-transparent:focus {
   border-color: transparent;
 }
 
 .focus\:border-black:focus {
-  border-color: #000;
+  border-color: #4a4a4a;
 }
 
 .focus\:border-white:focus {
@@ -2650,7 +2690,7 @@ video {
 }
 
 .focus\:border-red-500:focus {
-  border-color: #f56565;
+  border-color: #f47b66;
 }
 
 .focus\:border-red-600:focus {
@@ -2706,7 +2746,7 @@ video {
 }
 
 .focus\:border-yellow-100:focus {
-  border-color: #fffff0;
+  border-color: #fffcdd;
 }
 
 .focus\:border-yellow-200:focus {
@@ -2778,7 +2818,7 @@ video {
 }
 
 .focus\:border-teal-100:focus {
-  border-color: #e6fffa;
+  border-color: #E6FFFA;
 }
 
 .focus\:border-teal-200:focus {
@@ -2955,6 +2995,14 @@ video {
 
 .focus\:border-pink-900:focus {
   border-color: #702459;
+}
+
+.focus\:border-mypink:focus {
+  border-color: #a36a9d;
+}
+
+.focus\:border-myLightRed:focus {
+  border-color: #fac6c8;
 }
 
 .rounded-none {
@@ -3190,7 +3238,7 @@ video {
 }
 
 .border {
-  border-width: 1px;
+  border-width: 2px;
 }
 
 .border-t-0 {
@@ -3258,19 +3306,19 @@ video {
 }
 
 .border-t {
-  border-top-width: 1px;
+  border-top-width: 2px;
 }
 
 .border-r {
-  border-right-width: 1px;
+  border-right-width: 2px;
 }
 
 .border-b {
-  border-bottom-width: 1px;
+  border-bottom-width: 2px;
 }
 
 .border-l {
-  border-left-width: 1px;
+  border-left-width: 2px;
 }
 
 .cursor-auto {
@@ -6013,7 +6061,7 @@ video {
 }
 
 .text-black {
-  color: #000;
+  color: #4a4a4a;
 }
 
 .text-white {
@@ -6073,7 +6121,7 @@ video {
 }
 
 .text-red-500 {
-  color: #f56565;
+  color: #f47b66;
 }
 
 .text-red-600 {
@@ -6129,7 +6177,7 @@ video {
 }
 
 .text-yellow-100 {
-  color: #fffff0;
+  color: #fffcdd;
 }
 
 .text-yellow-200 {
@@ -6201,7 +6249,7 @@ video {
 }
 
 .text-teal-100 {
-  color: #e6fffa;
+  color: #E6FFFA;
 }
 
 .text-teal-200 {
@@ -6380,12 +6428,20 @@ video {
   color: #702459;
 }
 
+.text-mypink {
+  color: #a36a9d;
+}
+
+.text-myLightRed {
+  color: #fac6c8;
+}
+
 .hover\:text-transparent:hover {
   color: transparent;
 }
 
 .hover\:text-black:hover {
-  color: #000;
+  color: #4a4a4a;
 }
 
 .hover\:text-white:hover {
@@ -6445,7 +6501,7 @@ video {
 }
 
 .hover\:text-red-500:hover {
-  color: #f56565;
+  color: #f47b66;
 }
 
 .hover\:text-red-600:hover {
@@ -6501,7 +6557,7 @@ video {
 }
 
 .hover\:text-yellow-100:hover {
-  color: #fffff0;
+  color: #fffcdd;
 }
 
 .hover\:text-yellow-200:hover {
@@ -6573,7 +6629,7 @@ video {
 }
 
 .hover\:text-teal-100:hover {
-  color: #e6fffa;
+  color: #E6FFFA;
 }
 
 .hover\:text-teal-200:hover {
@@ -6752,12 +6808,20 @@ video {
   color: #702459;
 }
 
+.hover\:text-mypink:hover {
+  color: #a36a9d;
+}
+
+.hover\:text-myLightRed:hover {
+  color: #fac6c8;
+}
+
 .focus\:text-transparent:focus {
   color: transparent;
 }
 
 .focus\:text-black:focus {
-  color: #000;
+  color: #4a4a4a;
 }
 
 .focus\:text-white:focus {
@@ -6817,7 +6881,7 @@ video {
 }
 
 .focus\:text-red-500:focus {
-  color: #f56565;
+  color: #f47b66;
 }
 
 .focus\:text-red-600:focus {
@@ -6873,7 +6937,7 @@ video {
 }
 
 .focus\:text-yellow-100:focus {
-  color: #fffff0;
+  color: #fffcdd;
 }
 
 .focus\:text-yellow-200:focus {
@@ -6945,7 +7009,7 @@ video {
 }
 
 .focus\:text-teal-100:focus {
-  color: #e6fffa;
+  color: #E6FFFA;
 }
 
 .focus\:text-teal-200:focus {
@@ -7122,6 +7186,14 @@ video {
 
 .focus\:text-pink-900:focus {
   color: #702459;
+}
+
+.focus\:text-mypink:focus {
+  color: #a36a9d;
+}
+
+.focus\:text-myLightRed:focus {
+  color: #fac6c8;
 }
 
 .text-xs {
@@ -7601,7 +7673,7 @@ video {
   }
 
   .sm\:bg-black {
-    background-color: #000;
+    background-color: #4a4a4a;
   }
 
   .sm\:bg-white {
@@ -7661,7 +7733,7 @@ video {
   }
 
   .sm\:bg-red-500 {
-    background-color: #f56565;
+    background-color: #f47b66;
   }
 
   .sm\:bg-red-600 {
@@ -7717,7 +7789,7 @@ video {
   }
 
   .sm\:bg-yellow-100 {
-    background-color: #fffff0;
+    background-color: #fffcdd;
   }
 
   .sm\:bg-yellow-200 {
@@ -7789,7 +7861,7 @@ video {
   }
 
   .sm\:bg-teal-100 {
-    background-color: #e6fffa;
+    background-color: #E6FFFA;
   }
 
   .sm\:bg-teal-200 {
@@ -7968,12 +8040,20 @@ video {
     background-color: #702459;
   }
 
+  .sm\:bg-mypink {
+    background-color: #a36a9d;
+  }
+
+  .sm\:bg-myLightRed {
+    background-color: #fac6c8;
+  }
+
   .sm\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
 
   .sm\:hover\:bg-black:hover {
-    background-color: #000;
+    background-color: #4a4a4a;
   }
 
   .sm\:hover\:bg-white:hover {
@@ -8033,7 +8113,7 @@ video {
   }
 
   .sm\:hover\:bg-red-500:hover {
-    background-color: #f56565;
+    background-color: #f47b66;
   }
 
   .sm\:hover\:bg-red-600:hover {
@@ -8089,7 +8169,7 @@ video {
   }
 
   .sm\:hover\:bg-yellow-100:hover {
-    background-color: #fffff0;
+    background-color: #fffcdd;
   }
 
   .sm\:hover\:bg-yellow-200:hover {
@@ -8161,7 +8241,7 @@ video {
   }
 
   .sm\:hover\:bg-teal-100:hover {
-    background-color: #e6fffa;
+    background-color: #E6FFFA;
   }
 
   .sm\:hover\:bg-teal-200:hover {
@@ -8340,12 +8420,20 @@ video {
     background-color: #702459;
   }
 
+  .sm\:hover\:bg-mypink:hover {
+    background-color: #a36a9d;
+  }
+
+  .sm\:hover\:bg-myLightRed:hover {
+    background-color: #fac6c8;
+  }
+
   .sm\:focus\:bg-transparent:focus {
     background-color: transparent;
   }
 
   .sm\:focus\:bg-black:focus {
-    background-color: #000;
+    background-color: #4a4a4a;
   }
 
   .sm\:focus\:bg-white:focus {
@@ -8405,7 +8493,7 @@ video {
   }
 
   .sm\:focus\:bg-red-500:focus {
-    background-color: #f56565;
+    background-color: #f47b66;
   }
 
   .sm\:focus\:bg-red-600:focus {
@@ -8461,7 +8549,7 @@ video {
   }
 
   .sm\:focus\:bg-yellow-100:focus {
-    background-color: #fffff0;
+    background-color: #fffcdd;
   }
 
   .sm\:focus\:bg-yellow-200:focus {
@@ -8533,7 +8621,7 @@ video {
   }
 
   .sm\:focus\:bg-teal-100:focus {
-    background-color: #e6fffa;
+    background-color: #E6FFFA;
   }
 
   .sm\:focus\:bg-teal-200:focus {
@@ -8712,6 +8800,14 @@ video {
     background-color: #702459;
   }
 
+  .sm\:focus\:bg-mypink:focus {
+    background-color: #a36a9d;
+  }
+
+  .sm\:focus\:bg-myLightRed:focus {
+    background-color: #fac6c8;
+  }
+
   .sm\:bg-bottom {
     background-position: bottom;
   }
@@ -8797,7 +8893,7 @@ video {
   }
 
   .sm\:border-black {
-    border-color: #000;
+    border-color: #4a4a4a;
   }
 
   .sm\:border-white {
@@ -8857,7 +8953,7 @@ video {
   }
 
   .sm\:border-red-500 {
-    border-color: #f56565;
+    border-color: #f47b66;
   }
 
   .sm\:border-red-600 {
@@ -8913,7 +9009,7 @@ video {
   }
 
   .sm\:border-yellow-100 {
-    border-color: #fffff0;
+    border-color: #fffcdd;
   }
 
   .sm\:border-yellow-200 {
@@ -8985,7 +9081,7 @@ video {
   }
 
   .sm\:border-teal-100 {
-    border-color: #e6fffa;
+    border-color: #E6FFFA;
   }
 
   .sm\:border-teal-200 {
@@ -9164,12 +9260,20 @@ video {
     border-color: #702459;
   }
 
+  .sm\:border-mypink {
+    border-color: #a36a9d;
+  }
+
+  .sm\:border-myLightRed {
+    border-color: #fac6c8;
+  }
+
   .sm\:hover\:border-transparent:hover {
     border-color: transparent;
   }
 
   .sm\:hover\:border-black:hover {
-    border-color: #000;
+    border-color: #4a4a4a;
   }
 
   .sm\:hover\:border-white:hover {
@@ -9229,7 +9333,7 @@ video {
   }
 
   .sm\:hover\:border-red-500:hover {
-    border-color: #f56565;
+    border-color: #f47b66;
   }
 
   .sm\:hover\:border-red-600:hover {
@@ -9285,7 +9389,7 @@ video {
   }
 
   .sm\:hover\:border-yellow-100:hover {
-    border-color: #fffff0;
+    border-color: #fffcdd;
   }
 
   .sm\:hover\:border-yellow-200:hover {
@@ -9357,7 +9461,7 @@ video {
   }
 
   .sm\:hover\:border-teal-100:hover {
-    border-color: #e6fffa;
+    border-color: #E6FFFA;
   }
 
   .sm\:hover\:border-teal-200:hover {
@@ -9536,12 +9640,20 @@ video {
     border-color: #702459;
   }
 
+  .sm\:hover\:border-mypink:hover {
+    border-color: #a36a9d;
+  }
+
+  .sm\:hover\:border-myLightRed:hover {
+    border-color: #fac6c8;
+  }
+
   .sm\:focus\:border-transparent:focus {
     border-color: transparent;
   }
 
   .sm\:focus\:border-black:focus {
-    border-color: #000;
+    border-color: #4a4a4a;
   }
 
   .sm\:focus\:border-white:focus {
@@ -9601,7 +9713,7 @@ video {
   }
 
   .sm\:focus\:border-red-500:focus {
-    border-color: #f56565;
+    border-color: #f47b66;
   }
 
   .sm\:focus\:border-red-600:focus {
@@ -9657,7 +9769,7 @@ video {
   }
 
   .sm\:focus\:border-yellow-100:focus {
-    border-color: #fffff0;
+    border-color: #fffcdd;
   }
 
   .sm\:focus\:border-yellow-200:focus {
@@ -9729,7 +9841,7 @@ video {
   }
 
   .sm\:focus\:border-teal-100:focus {
-    border-color: #e6fffa;
+    border-color: #E6FFFA;
   }
 
   .sm\:focus\:border-teal-200:focus {
@@ -9906,6 +10018,14 @@ video {
 
   .sm\:focus\:border-pink-900:focus {
     border-color: #702459;
+  }
+
+  .sm\:focus\:border-mypink:focus {
+    border-color: #a36a9d;
+  }
+
+  .sm\:focus\:border-myLightRed:focus {
+    border-color: #fac6c8;
   }
 
   .sm\:rounded-none {
@@ -10141,7 +10261,7 @@ video {
   }
 
   .sm\:border {
-    border-width: 1px;
+    border-width: 2px;
   }
 
   .sm\:border-t-0 {
@@ -10209,19 +10329,19 @@ video {
   }
 
   .sm\:border-t {
-    border-top-width: 1px;
+    border-top-width: 2px;
   }
 
   .sm\:border-r {
-    border-right-width: 1px;
+    border-right-width: 2px;
   }
 
   .sm\:border-b {
-    border-bottom-width: 1px;
+    border-bottom-width: 2px;
   }
 
   .sm\:border-l {
-    border-left-width: 1px;
+    border-left-width: 2px;
   }
 
   .sm\:cursor-auto {
@@ -12964,7 +13084,7 @@ video {
   }
 
   .sm\:text-black {
-    color: #000;
+    color: #4a4a4a;
   }
 
   .sm\:text-white {
@@ -13024,7 +13144,7 @@ video {
   }
 
   .sm\:text-red-500 {
-    color: #f56565;
+    color: #f47b66;
   }
 
   .sm\:text-red-600 {
@@ -13080,7 +13200,7 @@ video {
   }
 
   .sm\:text-yellow-100 {
-    color: #fffff0;
+    color: #fffcdd;
   }
 
   .sm\:text-yellow-200 {
@@ -13152,7 +13272,7 @@ video {
   }
 
   .sm\:text-teal-100 {
-    color: #e6fffa;
+    color: #E6FFFA;
   }
 
   .sm\:text-teal-200 {
@@ -13331,12 +13451,20 @@ video {
     color: #702459;
   }
 
+  .sm\:text-mypink {
+    color: #a36a9d;
+  }
+
+  .sm\:text-myLightRed {
+    color: #fac6c8;
+  }
+
   .sm\:hover\:text-transparent:hover {
     color: transparent;
   }
 
   .sm\:hover\:text-black:hover {
-    color: #000;
+    color: #4a4a4a;
   }
 
   .sm\:hover\:text-white:hover {
@@ -13396,7 +13524,7 @@ video {
   }
 
   .sm\:hover\:text-red-500:hover {
-    color: #f56565;
+    color: #f47b66;
   }
 
   .sm\:hover\:text-red-600:hover {
@@ -13452,7 +13580,7 @@ video {
   }
 
   .sm\:hover\:text-yellow-100:hover {
-    color: #fffff0;
+    color: #fffcdd;
   }
 
   .sm\:hover\:text-yellow-200:hover {
@@ -13524,7 +13652,7 @@ video {
   }
 
   .sm\:hover\:text-teal-100:hover {
-    color: #e6fffa;
+    color: #E6FFFA;
   }
 
   .sm\:hover\:text-teal-200:hover {
@@ -13703,12 +13831,20 @@ video {
     color: #702459;
   }
 
+  .sm\:hover\:text-mypink:hover {
+    color: #a36a9d;
+  }
+
+  .sm\:hover\:text-myLightRed:hover {
+    color: #fac6c8;
+  }
+
   .sm\:focus\:text-transparent:focus {
     color: transparent;
   }
 
   .sm\:focus\:text-black:focus {
-    color: #000;
+    color: #4a4a4a;
   }
 
   .sm\:focus\:text-white:focus {
@@ -13768,7 +13904,7 @@ video {
   }
 
   .sm\:focus\:text-red-500:focus {
-    color: #f56565;
+    color: #f47b66;
   }
 
   .sm\:focus\:text-red-600:focus {
@@ -13824,7 +13960,7 @@ video {
   }
 
   .sm\:focus\:text-yellow-100:focus {
-    color: #fffff0;
+    color: #fffcdd;
   }
 
   .sm\:focus\:text-yellow-200:focus {
@@ -13896,7 +14032,7 @@ video {
   }
 
   .sm\:focus\:text-teal-100:focus {
-    color: #e6fffa;
+    color: #E6FFFA;
   }
 
   .sm\:focus\:text-teal-200:focus {
@@ -14073,6 +14209,14 @@ video {
 
   .sm\:focus\:text-pink-900:focus {
     color: #702459;
+  }
+
+  .sm\:focus\:text-mypink:focus {
+    color: #a36a9d;
+  }
+
+  .sm\:focus\:text-myLightRed:focus {
+    color: #fac6c8;
   }
 
   .sm\:text-xs {
@@ -14553,7 +14697,7 @@ video {
   }
 
   .md\:bg-black {
-    background-color: #000;
+    background-color: #4a4a4a;
   }
 
   .md\:bg-white {
@@ -14613,7 +14757,7 @@ video {
   }
 
   .md\:bg-red-500 {
-    background-color: #f56565;
+    background-color: #f47b66;
   }
 
   .md\:bg-red-600 {
@@ -14669,7 +14813,7 @@ video {
   }
 
   .md\:bg-yellow-100 {
-    background-color: #fffff0;
+    background-color: #fffcdd;
   }
 
   .md\:bg-yellow-200 {
@@ -14741,7 +14885,7 @@ video {
   }
 
   .md\:bg-teal-100 {
-    background-color: #e6fffa;
+    background-color: #E6FFFA;
   }
 
   .md\:bg-teal-200 {
@@ -14920,12 +15064,20 @@ video {
     background-color: #702459;
   }
 
+  .md\:bg-mypink {
+    background-color: #a36a9d;
+  }
+
+  .md\:bg-myLightRed {
+    background-color: #fac6c8;
+  }
+
   .md\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
 
   .md\:hover\:bg-black:hover {
-    background-color: #000;
+    background-color: #4a4a4a;
   }
 
   .md\:hover\:bg-white:hover {
@@ -14985,7 +15137,7 @@ video {
   }
 
   .md\:hover\:bg-red-500:hover {
-    background-color: #f56565;
+    background-color: #f47b66;
   }
 
   .md\:hover\:bg-red-600:hover {
@@ -15041,7 +15193,7 @@ video {
   }
 
   .md\:hover\:bg-yellow-100:hover {
-    background-color: #fffff0;
+    background-color: #fffcdd;
   }
 
   .md\:hover\:bg-yellow-200:hover {
@@ -15113,7 +15265,7 @@ video {
   }
 
   .md\:hover\:bg-teal-100:hover {
-    background-color: #e6fffa;
+    background-color: #E6FFFA;
   }
 
   .md\:hover\:bg-teal-200:hover {
@@ -15292,12 +15444,20 @@ video {
     background-color: #702459;
   }
 
+  .md\:hover\:bg-mypink:hover {
+    background-color: #a36a9d;
+  }
+
+  .md\:hover\:bg-myLightRed:hover {
+    background-color: #fac6c8;
+  }
+
   .md\:focus\:bg-transparent:focus {
     background-color: transparent;
   }
 
   .md\:focus\:bg-black:focus {
-    background-color: #000;
+    background-color: #4a4a4a;
   }
 
   .md\:focus\:bg-white:focus {
@@ -15357,7 +15517,7 @@ video {
   }
 
   .md\:focus\:bg-red-500:focus {
-    background-color: #f56565;
+    background-color: #f47b66;
   }
 
   .md\:focus\:bg-red-600:focus {
@@ -15413,7 +15573,7 @@ video {
   }
 
   .md\:focus\:bg-yellow-100:focus {
-    background-color: #fffff0;
+    background-color: #fffcdd;
   }
 
   .md\:focus\:bg-yellow-200:focus {
@@ -15485,7 +15645,7 @@ video {
   }
 
   .md\:focus\:bg-teal-100:focus {
-    background-color: #e6fffa;
+    background-color: #E6FFFA;
   }
 
   .md\:focus\:bg-teal-200:focus {
@@ -15664,6 +15824,14 @@ video {
     background-color: #702459;
   }
 
+  .md\:focus\:bg-mypink:focus {
+    background-color: #a36a9d;
+  }
+
+  .md\:focus\:bg-myLightRed:focus {
+    background-color: #fac6c8;
+  }
+
   .md\:bg-bottom {
     background-position: bottom;
   }
@@ -15749,7 +15917,7 @@ video {
   }
 
   .md\:border-black {
-    border-color: #000;
+    border-color: #4a4a4a;
   }
 
   .md\:border-white {
@@ -15809,7 +15977,7 @@ video {
   }
 
   .md\:border-red-500 {
-    border-color: #f56565;
+    border-color: #f47b66;
   }
 
   .md\:border-red-600 {
@@ -15865,7 +16033,7 @@ video {
   }
 
   .md\:border-yellow-100 {
-    border-color: #fffff0;
+    border-color: #fffcdd;
   }
 
   .md\:border-yellow-200 {
@@ -15937,7 +16105,7 @@ video {
   }
 
   .md\:border-teal-100 {
-    border-color: #e6fffa;
+    border-color: #E6FFFA;
   }
 
   .md\:border-teal-200 {
@@ -16116,12 +16284,20 @@ video {
     border-color: #702459;
   }
 
+  .md\:border-mypink {
+    border-color: #a36a9d;
+  }
+
+  .md\:border-myLightRed {
+    border-color: #fac6c8;
+  }
+
   .md\:hover\:border-transparent:hover {
     border-color: transparent;
   }
 
   .md\:hover\:border-black:hover {
-    border-color: #000;
+    border-color: #4a4a4a;
   }
 
   .md\:hover\:border-white:hover {
@@ -16181,7 +16357,7 @@ video {
   }
 
   .md\:hover\:border-red-500:hover {
-    border-color: #f56565;
+    border-color: #f47b66;
   }
 
   .md\:hover\:border-red-600:hover {
@@ -16237,7 +16413,7 @@ video {
   }
 
   .md\:hover\:border-yellow-100:hover {
-    border-color: #fffff0;
+    border-color: #fffcdd;
   }
 
   .md\:hover\:border-yellow-200:hover {
@@ -16309,7 +16485,7 @@ video {
   }
 
   .md\:hover\:border-teal-100:hover {
-    border-color: #e6fffa;
+    border-color: #E6FFFA;
   }
 
   .md\:hover\:border-teal-200:hover {
@@ -16488,12 +16664,20 @@ video {
     border-color: #702459;
   }
 
+  .md\:hover\:border-mypink:hover {
+    border-color: #a36a9d;
+  }
+
+  .md\:hover\:border-myLightRed:hover {
+    border-color: #fac6c8;
+  }
+
   .md\:focus\:border-transparent:focus {
     border-color: transparent;
   }
 
   .md\:focus\:border-black:focus {
-    border-color: #000;
+    border-color: #4a4a4a;
   }
 
   .md\:focus\:border-white:focus {
@@ -16553,7 +16737,7 @@ video {
   }
 
   .md\:focus\:border-red-500:focus {
-    border-color: #f56565;
+    border-color: #f47b66;
   }
 
   .md\:focus\:border-red-600:focus {
@@ -16609,7 +16793,7 @@ video {
   }
 
   .md\:focus\:border-yellow-100:focus {
-    border-color: #fffff0;
+    border-color: #fffcdd;
   }
 
   .md\:focus\:border-yellow-200:focus {
@@ -16681,7 +16865,7 @@ video {
   }
 
   .md\:focus\:border-teal-100:focus {
-    border-color: #e6fffa;
+    border-color: #E6FFFA;
   }
 
   .md\:focus\:border-teal-200:focus {
@@ -16858,6 +17042,14 @@ video {
 
   .md\:focus\:border-pink-900:focus {
     border-color: #702459;
+  }
+
+  .md\:focus\:border-mypink:focus {
+    border-color: #a36a9d;
+  }
+
+  .md\:focus\:border-myLightRed:focus {
+    border-color: #fac6c8;
   }
 
   .md\:rounded-none {
@@ -17093,7 +17285,7 @@ video {
   }
 
   .md\:border {
-    border-width: 1px;
+    border-width: 2px;
   }
 
   .md\:border-t-0 {
@@ -17161,19 +17353,19 @@ video {
   }
 
   .md\:border-t {
-    border-top-width: 1px;
+    border-top-width: 2px;
   }
 
   .md\:border-r {
-    border-right-width: 1px;
+    border-right-width: 2px;
   }
 
   .md\:border-b {
-    border-bottom-width: 1px;
+    border-bottom-width: 2px;
   }
 
   .md\:border-l {
-    border-left-width: 1px;
+    border-left-width: 2px;
   }
 
   .md\:cursor-auto {
@@ -19916,7 +20108,7 @@ video {
   }
 
   .md\:text-black {
-    color: #000;
+    color: #4a4a4a;
   }
 
   .md\:text-white {
@@ -19976,7 +20168,7 @@ video {
   }
 
   .md\:text-red-500 {
-    color: #f56565;
+    color: #f47b66;
   }
 
   .md\:text-red-600 {
@@ -20032,7 +20224,7 @@ video {
   }
 
   .md\:text-yellow-100 {
-    color: #fffff0;
+    color: #fffcdd;
   }
 
   .md\:text-yellow-200 {
@@ -20104,7 +20296,7 @@ video {
   }
 
   .md\:text-teal-100 {
-    color: #e6fffa;
+    color: #E6FFFA;
   }
 
   .md\:text-teal-200 {
@@ -20283,12 +20475,20 @@ video {
     color: #702459;
   }
 
+  .md\:text-mypink {
+    color: #a36a9d;
+  }
+
+  .md\:text-myLightRed {
+    color: #fac6c8;
+  }
+
   .md\:hover\:text-transparent:hover {
     color: transparent;
   }
 
   .md\:hover\:text-black:hover {
-    color: #000;
+    color: #4a4a4a;
   }
 
   .md\:hover\:text-white:hover {
@@ -20348,7 +20548,7 @@ video {
   }
 
   .md\:hover\:text-red-500:hover {
-    color: #f56565;
+    color: #f47b66;
   }
 
   .md\:hover\:text-red-600:hover {
@@ -20404,7 +20604,7 @@ video {
   }
 
   .md\:hover\:text-yellow-100:hover {
-    color: #fffff0;
+    color: #fffcdd;
   }
 
   .md\:hover\:text-yellow-200:hover {
@@ -20476,7 +20676,7 @@ video {
   }
 
   .md\:hover\:text-teal-100:hover {
-    color: #e6fffa;
+    color: #E6FFFA;
   }
 
   .md\:hover\:text-teal-200:hover {
@@ -20655,12 +20855,20 @@ video {
     color: #702459;
   }
 
+  .md\:hover\:text-mypink:hover {
+    color: #a36a9d;
+  }
+
+  .md\:hover\:text-myLightRed:hover {
+    color: #fac6c8;
+  }
+
   .md\:focus\:text-transparent:focus {
     color: transparent;
   }
 
   .md\:focus\:text-black:focus {
-    color: #000;
+    color: #4a4a4a;
   }
 
   .md\:focus\:text-white:focus {
@@ -20720,7 +20928,7 @@ video {
   }
 
   .md\:focus\:text-red-500:focus {
-    color: #f56565;
+    color: #f47b66;
   }
 
   .md\:focus\:text-red-600:focus {
@@ -20776,7 +20984,7 @@ video {
   }
 
   .md\:focus\:text-yellow-100:focus {
-    color: #fffff0;
+    color: #fffcdd;
   }
 
   .md\:focus\:text-yellow-200:focus {
@@ -20848,7 +21056,7 @@ video {
   }
 
   .md\:focus\:text-teal-100:focus {
-    color: #e6fffa;
+    color: #E6FFFA;
   }
 
   .md\:focus\:text-teal-200:focus {
@@ -21025,6 +21233,14 @@ video {
 
   .md\:focus\:text-pink-900:focus {
     color: #702459;
+  }
+
+  .md\:focus\:text-mypink:focus {
+    color: #a36a9d;
+  }
+
+  .md\:focus\:text-myLightRed:focus {
+    color: #fac6c8;
   }
 
   .md\:text-xs {
@@ -21505,7 +21721,7 @@ video {
   }
 
   .lg\:bg-black {
-    background-color: #000;
+    background-color: #4a4a4a;
   }
 
   .lg\:bg-white {
@@ -21565,7 +21781,7 @@ video {
   }
 
   .lg\:bg-red-500 {
-    background-color: #f56565;
+    background-color: #f47b66;
   }
 
   .lg\:bg-red-600 {
@@ -21621,7 +21837,7 @@ video {
   }
 
   .lg\:bg-yellow-100 {
-    background-color: #fffff0;
+    background-color: #fffcdd;
   }
 
   .lg\:bg-yellow-200 {
@@ -21693,7 +21909,7 @@ video {
   }
 
   .lg\:bg-teal-100 {
-    background-color: #e6fffa;
+    background-color: #E6FFFA;
   }
 
   .lg\:bg-teal-200 {
@@ -21872,12 +22088,20 @@ video {
     background-color: #702459;
   }
 
+  .lg\:bg-mypink {
+    background-color: #a36a9d;
+  }
+
+  .lg\:bg-myLightRed {
+    background-color: #fac6c8;
+  }
+
   .lg\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
 
   .lg\:hover\:bg-black:hover {
-    background-color: #000;
+    background-color: #4a4a4a;
   }
 
   .lg\:hover\:bg-white:hover {
@@ -21937,7 +22161,7 @@ video {
   }
 
   .lg\:hover\:bg-red-500:hover {
-    background-color: #f56565;
+    background-color: #f47b66;
   }
 
   .lg\:hover\:bg-red-600:hover {
@@ -21993,7 +22217,7 @@ video {
   }
 
   .lg\:hover\:bg-yellow-100:hover {
-    background-color: #fffff0;
+    background-color: #fffcdd;
   }
 
   .lg\:hover\:bg-yellow-200:hover {
@@ -22065,7 +22289,7 @@ video {
   }
 
   .lg\:hover\:bg-teal-100:hover {
-    background-color: #e6fffa;
+    background-color: #E6FFFA;
   }
 
   .lg\:hover\:bg-teal-200:hover {
@@ -22244,12 +22468,20 @@ video {
     background-color: #702459;
   }
 
+  .lg\:hover\:bg-mypink:hover {
+    background-color: #a36a9d;
+  }
+
+  .lg\:hover\:bg-myLightRed:hover {
+    background-color: #fac6c8;
+  }
+
   .lg\:focus\:bg-transparent:focus {
     background-color: transparent;
   }
 
   .lg\:focus\:bg-black:focus {
-    background-color: #000;
+    background-color: #4a4a4a;
   }
 
   .lg\:focus\:bg-white:focus {
@@ -22309,7 +22541,7 @@ video {
   }
 
   .lg\:focus\:bg-red-500:focus {
-    background-color: #f56565;
+    background-color: #f47b66;
   }
 
   .lg\:focus\:bg-red-600:focus {
@@ -22365,7 +22597,7 @@ video {
   }
 
   .lg\:focus\:bg-yellow-100:focus {
-    background-color: #fffff0;
+    background-color: #fffcdd;
   }
 
   .lg\:focus\:bg-yellow-200:focus {
@@ -22437,7 +22669,7 @@ video {
   }
 
   .lg\:focus\:bg-teal-100:focus {
-    background-color: #e6fffa;
+    background-color: #E6FFFA;
   }
 
   .lg\:focus\:bg-teal-200:focus {
@@ -22616,6 +22848,14 @@ video {
     background-color: #702459;
   }
 
+  .lg\:focus\:bg-mypink:focus {
+    background-color: #a36a9d;
+  }
+
+  .lg\:focus\:bg-myLightRed:focus {
+    background-color: #fac6c8;
+  }
+
   .lg\:bg-bottom {
     background-position: bottom;
   }
@@ -22701,7 +22941,7 @@ video {
   }
 
   .lg\:border-black {
-    border-color: #000;
+    border-color: #4a4a4a;
   }
 
   .lg\:border-white {
@@ -22761,7 +23001,7 @@ video {
   }
 
   .lg\:border-red-500 {
-    border-color: #f56565;
+    border-color: #f47b66;
   }
 
   .lg\:border-red-600 {
@@ -22817,7 +23057,7 @@ video {
   }
 
   .lg\:border-yellow-100 {
-    border-color: #fffff0;
+    border-color: #fffcdd;
   }
 
   .lg\:border-yellow-200 {
@@ -22889,7 +23129,7 @@ video {
   }
 
   .lg\:border-teal-100 {
-    border-color: #e6fffa;
+    border-color: #E6FFFA;
   }
 
   .lg\:border-teal-200 {
@@ -23068,12 +23308,20 @@ video {
     border-color: #702459;
   }
 
+  .lg\:border-mypink {
+    border-color: #a36a9d;
+  }
+
+  .lg\:border-myLightRed {
+    border-color: #fac6c8;
+  }
+
   .lg\:hover\:border-transparent:hover {
     border-color: transparent;
   }
 
   .lg\:hover\:border-black:hover {
-    border-color: #000;
+    border-color: #4a4a4a;
   }
 
   .lg\:hover\:border-white:hover {
@@ -23133,7 +23381,7 @@ video {
   }
 
   .lg\:hover\:border-red-500:hover {
-    border-color: #f56565;
+    border-color: #f47b66;
   }
 
   .lg\:hover\:border-red-600:hover {
@@ -23189,7 +23437,7 @@ video {
   }
 
   .lg\:hover\:border-yellow-100:hover {
-    border-color: #fffff0;
+    border-color: #fffcdd;
   }
 
   .lg\:hover\:border-yellow-200:hover {
@@ -23261,7 +23509,7 @@ video {
   }
 
   .lg\:hover\:border-teal-100:hover {
-    border-color: #e6fffa;
+    border-color: #E6FFFA;
   }
 
   .lg\:hover\:border-teal-200:hover {
@@ -23440,12 +23688,20 @@ video {
     border-color: #702459;
   }
 
+  .lg\:hover\:border-mypink:hover {
+    border-color: #a36a9d;
+  }
+
+  .lg\:hover\:border-myLightRed:hover {
+    border-color: #fac6c8;
+  }
+
   .lg\:focus\:border-transparent:focus {
     border-color: transparent;
   }
 
   .lg\:focus\:border-black:focus {
-    border-color: #000;
+    border-color: #4a4a4a;
   }
 
   .lg\:focus\:border-white:focus {
@@ -23505,7 +23761,7 @@ video {
   }
 
   .lg\:focus\:border-red-500:focus {
-    border-color: #f56565;
+    border-color: #f47b66;
   }
 
   .lg\:focus\:border-red-600:focus {
@@ -23561,7 +23817,7 @@ video {
   }
 
   .lg\:focus\:border-yellow-100:focus {
-    border-color: #fffff0;
+    border-color: #fffcdd;
   }
 
   .lg\:focus\:border-yellow-200:focus {
@@ -23633,7 +23889,7 @@ video {
   }
 
   .lg\:focus\:border-teal-100:focus {
-    border-color: #e6fffa;
+    border-color: #E6FFFA;
   }
 
   .lg\:focus\:border-teal-200:focus {
@@ -23810,6 +24066,14 @@ video {
 
   .lg\:focus\:border-pink-900:focus {
     border-color: #702459;
+  }
+
+  .lg\:focus\:border-mypink:focus {
+    border-color: #a36a9d;
+  }
+
+  .lg\:focus\:border-myLightRed:focus {
+    border-color: #fac6c8;
   }
 
   .lg\:rounded-none {
@@ -24045,7 +24309,7 @@ video {
   }
 
   .lg\:border {
-    border-width: 1px;
+    border-width: 2px;
   }
 
   .lg\:border-t-0 {
@@ -24113,19 +24377,19 @@ video {
   }
 
   .lg\:border-t {
-    border-top-width: 1px;
+    border-top-width: 2px;
   }
 
   .lg\:border-r {
-    border-right-width: 1px;
+    border-right-width: 2px;
   }
 
   .lg\:border-b {
-    border-bottom-width: 1px;
+    border-bottom-width: 2px;
   }
 
   .lg\:border-l {
-    border-left-width: 1px;
+    border-left-width: 2px;
   }
 
   .lg\:cursor-auto {
@@ -26868,7 +27132,7 @@ video {
   }
 
   .lg\:text-black {
-    color: #000;
+    color: #4a4a4a;
   }
 
   .lg\:text-white {
@@ -26928,7 +27192,7 @@ video {
   }
 
   .lg\:text-red-500 {
-    color: #f56565;
+    color: #f47b66;
   }
 
   .lg\:text-red-600 {
@@ -26984,7 +27248,7 @@ video {
   }
 
   .lg\:text-yellow-100 {
-    color: #fffff0;
+    color: #fffcdd;
   }
 
   .lg\:text-yellow-200 {
@@ -27056,7 +27320,7 @@ video {
   }
 
   .lg\:text-teal-100 {
-    color: #e6fffa;
+    color: #E6FFFA;
   }
 
   .lg\:text-teal-200 {
@@ -27235,12 +27499,20 @@ video {
     color: #702459;
   }
 
+  .lg\:text-mypink {
+    color: #a36a9d;
+  }
+
+  .lg\:text-myLightRed {
+    color: #fac6c8;
+  }
+
   .lg\:hover\:text-transparent:hover {
     color: transparent;
   }
 
   .lg\:hover\:text-black:hover {
-    color: #000;
+    color: #4a4a4a;
   }
 
   .lg\:hover\:text-white:hover {
@@ -27300,7 +27572,7 @@ video {
   }
 
   .lg\:hover\:text-red-500:hover {
-    color: #f56565;
+    color: #f47b66;
   }
 
   .lg\:hover\:text-red-600:hover {
@@ -27356,7 +27628,7 @@ video {
   }
 
   .lg\:hover\:text-yellow-100:hover {
-    color: #fffff0;
+    color: #fffcdd;
   }
 
   .lg\:hover\:text-yellow-200:hover {
@@ -27428,7 +27700,7 @@ video {
   }
 
   .lg\:hover\:text-teal-100:hover {
-    color: #e6fffa;
+    color: #E6FFFA;
   }
 
   .lg\:hover\:text-teal-200:hover {
@@ -27607,12 +27879,20 @@ video {
     color: #702459;
   }
 
+  .lg\:hover\:text-mypink:hover {
+    color: #a36a9d;
+  }
+
+  .lg\:hover\:text-myLightRed:hover {
+    color: #fac6c8;
+  }
+
   .lg\:focus\:text-transparent:focus {
     color: transparent;
   }
 
   .lg\:focus\:text-black:focus {
-    color: #000;
+    color: #4a4a4a;
   }
 
   .lg\:focus\:text-white:focus {
@@ -27672,7 +27952,7 @@ video {
   }
 
   .lg\:focus\:text-red-500:focus {
-    color: #f56565;
+    color: #f47b66;
   }
 
   .lg\:focus\:text-red-600:focus {
@@ -27728,7 +28008,7 @@ video {
   }
 
   .lg\:focus\:text-yellow-100:focus {
-    color: #fffff0;
+    color: #fffcdd;
   }
 
   .lg\:focus\:text-yellow-200:focus {
@@ -27800,7 +28080,7 @@ video {
   }
 
   .lg\:focus\:text-teal-100:focus {
-    color: #e6fffa;
+    color: #E6FFFA;
   }
 
   .lg\:focus\:text-teal-200:focus {
@@ -27977,6 +28257,14 @@ video {
 
   .lg\:focus\:text-pink-900:focus {
     color: #702459;
+  }
+
+  .lg\:focus\:text-mypink:focus {
+    color: #a36a9d;
+  }
+
+  .lg\:focus\:text-myLightRed:focus {
+    color: #fac6c8;
   }
 
   .lg\:text-xs {
@@ -28457,7 +28745,7 @@ video {
   }
 
   .xl\:bg-black {
-    background-color: #000;
+    background-color: #4a4a4a;
   }
 
   .xl\:bg-white {
@@ -28517,7 +28805,7 @@ video {
   }
 
   .xl\:bg-red-500 {
-    background-color: #f56565;
+    background-color: #f47b66;
   }
 
   .xl\:bg-red-600 {
@@ -28573,7 +28861,7 @@ video {
   }
 
   .xl\:bg-yellow-100 {
-    background-color: #fffff0;
+    background-color: #fffcdd;
   }
 
   .xl\:bg-yellow-200 {
@@ -28645,7 +28933,7 @@ video {
   }
 
   .xl\:bg-teal-100 {
-    background-color: #e6fffa;
+    background-color: #E6FFFA;
   }
 
   .xl\:bg-teal-200 {
@@ -28824,12 +29112,20 @@ video {
     background-color: #702459;
   }
 
+  .xl\:bg-mypink {
+    background-color: #a36a9d;
+  }
+
+  .xl\:bg-myLightRed {
+    background-color: #fac6c8;
+  }
+
   .xl\:hover\:bg-transparent:hover {
     background-color: transparent;
   }
 
   .xl\:hover\:bg-black:hover {
-    background-color: #000;
+    background-color: #4a4a4a;
   }
 
   .xl\:hover\:bg-white:hover {
@@ -28889,7 +29185,7 @@ video {
   }
 
   .xl\:hover\:bg-red-500:hover {
-    background-color: #f56565;
+    background-color: #f47b66;
   }
 
   .xl\:hover\:bg-red-600:hover {
@@ -28945,7 +29241,7 @@ video {
   }
 
   .xl\:hover\:bg-yellow-100:hover {
-    background-color: #fffff0;
+    background-color: #fffcdd;
   }
 
   .xl\:hover\:bg-yellow-200:hover {
@@ -29017,7 +29313,7 @@ video {
   }
 
   .xl\:hover\:bg-teal-100:hover {
-    background-color: #e6fffa;
+    background-color: #E6FFFA;
   }
 
   .xl\:hover\:bg-teal-200:hover {
@@ -29196,12 +29492,20 @@ video {
     background-color: #702459;
   }
 
+  .xl\:hover\:bg-mypink:hover {
+    background-color: #a36a9d;
+  }
+
+  .xl\:hover\:bg-myLightRed:hover {
+    background-color: #fac6c8;
+  }
+
   .xl\:focus\:bg-transparent:focus {
     background-color: transparent;
   }
 
   .xl\:focus\:bg-black:focus {
-    background-color: #000;
+    background-color: #4a4a4a;
   }
 
   .xl\:focus\:bg-white:focus {
@@ -29261,7 +29565,7 @@ video {
   }
 
   .xl\:focus\:bg-red-500:focus {
-    background-color: #f56565;
+    background-color: #f47b66;
   }
 
   .xl\:focus\:bg-red-600:focus {
@@ -29317,7 +29621,7 @@ video {
   }
 
   .xl\:focus\:bg-yellow-100:focus {
-    background-color: #fffff0;
+    background-color: #fffcdd;
   }
 
   .xl\:focus\:bg-yellow-200:focus {
@@ -29389,7 +29693,7 @@ video {
   }
 
   .xl\:focus\:bg-teal-100:focus {
-    background-color: #e6fffa;
+    background-color: #E6FFFA;
   }
 
   .xl\:focus\:bg-teal-200:focus {
@@ -29568,6 +29872,14 @@ video {
     background-color: #702459;
   }
 
+  .xl\:focus\:bg-mypink:focus {
+    background-color: #a36a9d;
+  }
+
+  .xl\:focus\:bg-myLightRed:focus {
+    background-color: #fac6c8;
+  }
+
   .xl\:bg-bottom {
     background-position: bottom;
   }
@@ -29653,7 +29965,7 @@ video {
   }
 
   .xl\:border-black {
-    border-color: #000;
+    border-color: #4a4a4a;
   }
 
   .xl\:border-white {
@@ -29713,7 +30025,7 @@ video {
   }
 
   .xl\:border-red-500 {
-    border-color: #f56565;
+    border-color: #f47b66;
   }
 
   .xl\:border-red-600 {
@@ -29769,7 +30081,7 @@ video {
   }
 
   .xl\:border-yellow-100 {
-    border-color: #fffff0;
+    border-color: #fffcdd;
   }
 
   .xl\:border-yellow-200 {
@@ -29841,7 +30153,7 @@ video {
   }
 
   .xl\:border-teal-100 {
-    border-color: #e6fffa;
+    border-color: #E6FFFA;
   }
 
   .xl\:border-teal-200 {
@@ -30020,12 +30332,20 @@ video {
     border-color: #702459;
   }
 
+  .xl\:border-mypink {
+    border-color: #a36a9d;
+  }
+
+  .xl\:border-myLightRed {
+    border-color: #fac6c8;
+  }
+
   .xl\:hover\:border-transparent:hover {
     border-color: transparent;
   }
 
   .xl\:hover\:border-black:hover {
-    border-color: #000;
+    border-color: #4a4a4a;
   }
 
   .xl\:hover\:border-white:hover {
@@ -30085,7 +30405,7 @@ video {
   }
 
   .xl\:hover\:border-red-500:hover {
-    border-color: #f56565;
+    border-color: #f47b66;
   }
 
   .xl\:hover\:border-red-600:hover {
@@ -30141,7 +30461,7 @@ video {
   }
 
   .xl\:hover\:border-yellow-100:hover {
-    border-color: #fffff0;
+    border-color: #fffcdd;
   }
 
   .xl\:hover\:border-yellow-200:hover {
@@ -30213,7 +30533,7 @@ video {
   }
 
   .xl\:hover\:border-teal-100:hover {
-    border-color: #e6fffa;
+    border-color: #E6FFFA;
   }
 
   .xl\:hover\:border-teal-200:hover {
@@ -30392,12 +30712,20 @@ video {
     border-color: #702459;
   }
 
+  .xl\:hover\:border-mypink:hover {
+    border-color: #a36a9d;
+  }
+
+  .xl\:hover\:border-myLightRed:hover {
+    border-color: #fac6c8;
+  }
+
   .xl\:focus\:border-transparent:focus {
     border-color: transparent;
   }
 
   .xl\:focus\:border-black:focus {
-    border-color: #000;
+    border-color: #4a4a4a;
   }
 
   .xl\:focus\:border-white:focus {
@@ -30457,7 +30785,7 @@ video {
   }
 
   .xl\:focus\:border-red-500:focus {
-    border-color: #f56565;
+    border-color: #f47b66;
   }
 
   .xl\:focus\:border-red-600:focus {
@@ -30513,7 +30841,7 @@ video {
   }
 
   .xl\:focus\:border-yellow-100:focus {
-    border-color: #fffff0;
+    border-color: #fffcdd;
   }
 
   .xl\:focus\:border-yellow-200:focus {
@@ -30585,7 +30913,7 @@ video {
   }
 
   .xl\:focus\:border-teal-100:focus {
-    border-color: #e6fffa;
+    border-color: #E6FFFA;
   }
 
   .xl\:focus\:border-teal-200:focus {
@@ -30762,6 +31090,14 @@ video {
 
   .xl\:focus\:border-pink-900:focus {
     border-color: #702459;
+  }
+
+  .xl\:focus\:border-mypink:focus {
+    border-color: #a36a9d;
+  }
+
+  .xl\:focus\:border-myLightRed:focus {
+    border-color: #fac6c8;
   }
 
   .xl\:rounded-none {
@@ -30997,7 +31333,7 @@ video {
   }
 
   .xl\:border {
-    border-width: 1px;
+    border-width: 2px;
   }
 
   .xl\:border-t-0 {
@@ -31065,19 +31401,19 @@ video {
   }
 
   .xl\:border-t {
-    border-top-width: 1px;
+    border-top-width: 2px;
   }
 
   .xl\:border-r {
-    border-right-width: 1px;
+    border-right-width: 2px;
   }
 
   .xl\:border-b {
-    border-bottom-width: 1px;
+    border-bottom-width: 2px;
   }
 
   .xl\:border-l {
-    border-left-width: 1px;
+    border-left-width: 2px;
   }
 
   .xl\:cursor-auto {
@@ -33820,7 +34156,7 @@ video {
   }
 
   .xl\:text-black {
-    color: #000;
+    color: #4a4a4a;
   }
 
   .xl\:text-white {
@@ -33880,7 +34216,7 @@ video {
   }
 
   .xl\:text-red-500 {
-    color: #f56565;
+    color: #f47b66;
   }
 
   .xl\:text-red-600 {
@@ -33936,7 +34272,7 @@ video {
   }
 
   .xl\:text-yellow-100 {
-    color: #fffff0;
+    color: #fffcdd;
   }
 
   .xl\:text-yellow-200 {
@@ -34008,7 +34344,7 @@ video {
   }
 
   .xl\:text-teal-100 {
-    color: #e6fffa;
+    color: #E6FFFA;
   }
 
   .xl\:text-teal-200 {
@@ -34187,12 +34523,20 @@ video {
     color: #702459;
   }
 
+  .xl\:text-mypink {
+    color: #a36a9d;
+  }
+
+  .xl\:text-myLightRed {
+    color: #fac6c8;
+  }
+
   .xl\:hover\:text-transparent:hover {
     color: transparent;
   }
 
   .xl\:hover\:text-black:hover {
-    color: #000;
+    color: #4a4a4a;
   }
 
   .xl\:hover\:text-white:hover {
@@ -34252,7 +34596,7 @@ video {
   }
 
   .xl\:hover\:text-red-500:hover {
-    color: #f56565;
+    color: #f47b66;
   }
 
   .xl\:hover\:text-red-600:hover {
@@ -34308,7 +34652,7 @@ video {
   }
 
   .xl\:hover\:text-yellow-100:hover {
-    color: #fffff0;
+    color: #fffcdd;
   }
 
   .xl\:hover\:text-yellow-200:hover {
@@ -34380,7 +34724,7 @@ video {
   }
 
   .xl\:hover\:text-teal-100:hover {
-    color: #e6fffa;
+    color: #E6FFFA;
   }
 
   .xl\:hover\:text-teal-200:hover {
@@ -34559,12 +34903,20 @@ video {
     color: #702459;
   }
 
+  .xl\:hover\:text-mypink:hover {
+    color: #a36a9d;
+  }
+
+  .xl\:hover\:text-myLightRed:hover {
+    color: #fac6c8;
+  }
+
   .xl\:focus\:text-transparent:focus {
     color: transparent;
   }
 
   .xl\:focus\:text-black:focus {
-    color: #000;
+    color: #4a4a4a;
   }
 
   .xl\:focus\:text-white:focus {
@@ -34624,7 +34976,7 @@ video {
   }
 
   .xl\:focus\:text-red-500:focus {
-    color: #f56565;
+    color: #f47b66;
   }
 
   .xl\:focus\:text-red-600:focus {
@@ -34680,7 +35032,7 @@ video {
   }
 
   .xl\:focus\:text-yellow-100:focus {
-    color: #fffff0;
+    color: #fffcdd;
   }
 
   .xl\:focus\:text-yellow-200:focus {
@@ -34752,7 +35104,7 @@ video {
   }
 
   .xl\:focus\:text-teal-100:focus {
-    color: #e6fffa;
+    color: #E6FFFA;
   }
 
   .xl\:focus\:text-teal-200:focus {
@@ -34929,6 +35281,14 @@ video {
 
   .xl\:focus\:text-pink-900:focus {
     color: #702459;
+  }
+
+  .xl\:focus\:text-mypink:focus {
+    color: #a36a9d;
+  }
+
+  .xl\:focus\:text-myLightRed:focus {
+    color: #fac6c8;
   }
 
   .xl\:text-xs {

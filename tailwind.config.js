@@ -12,7 +12,7 @@ module.exports = {
     colors: {
       transparent: 'transparent',
 
-      black: '#000',
+      black: '#4a4a4a',
       white: '#fff',
 
       gray: {
@@ -31,7 +31,7 @@ module.exports = {
         200: '#fed7d7',
         300: '#feb2b2',
         400: '#fc8181',
-        500: '#f56565',
+        500: '#f47b66',
         600: '#e53e3e',
         700: '#c53030',
         800: '#9b2c2c',
@@ -49,7 +49,7 @@ module.exports = {
         900: '#7b341e',
       },
       yellow: {
-        100: '#fffff0',
+        100: '#fffcdd',
         200: '#fefcbf',
         300: '#faf089',
         400: '#f6e05e',
@@ -71,7 +71,7 @@ module.exports = {
         900: '#22543d',
       },
       teal: {
-        100: '#e6fffa',
+        100: '#E6FFFA',
         200: '#b2f5ea',
         300: '#81e6d9',
         400: '#4fd1c5',
@@ -125,6 +125,8 @@ module.exports = {
         800: '#97266d',
         900: '#702459',
       },
+      mypink:'#a36a9d',
+      myLightRed: '#fac6c8'
     },
     spacing: {
       px: '1px',
@@ -166,7 +168,7 @@ module.exports = {
     },
     borderColor: theme => ({
       ...theme('colors'),
-      default: theme('colors.gray.300', 'currentColor'),
+      default: theme('colors.mypink', 'currentColor'),
     }),
     borderRadius: {
       none: '0',
@@ -176,7 +178,7 @@ module.exports = {
       full: '9999px',
     },
     borderWidth: {
-      default: '1px',
+      default: '2px',
       '0': '0',
       '2': '2px',
       '4': '4px',
