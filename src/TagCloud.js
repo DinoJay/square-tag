@@ -33,12 +33,12 @@ const MoreTags = (props)=> {
   if(slicedTags.length === 0) return null;
 
   return <div className={
-    clsx('bg-white border-t-2 overflow-hidden z-50 w-full', className,
+    clsx('bg-white border-t-2 p-1 overflow-y-auto z-50 w-full', className,
       ext && ' p-2 ') }
-      style={{transition: 'all 300ms', maxHeight:ext ? '30rem': '5rem',
+      style={{transition: 'all 300ms', maxHeight:ext ? '50%': '8rem',
     }}>
-    <div className="relative m-1 overflow-y-auto flex flex-wrap "
-    style={{transition: 'all 300ms', maxHeight: '30rem', display: ext&&'grid',
+    <div className="relative h-full w-full flex flex-wrap "
+    style={{transition: 'all 300ms', display: ext&&'grid',
       gridTemplateColumns: ext&& 'auto auto auto auto'
     }}
     >
@@ -72,7 +72,6 @@ const MoreTags = (props)=> {
 const DocPreview = (props) => {
   const {style, datum, selectedKeys, zoomed, size, onClick}=props;
 
-  const [detail, setDetail] = useState(false);
   const docResult = d=> d.values.filter(d => d.tags.find(t => selectedKeys.includes(t)))
 
       return <div
@@ -81,11 +80,11 @@ const DocPreview = (props) => {
         <div className="text-3xl text-center" style={{minWidth: '20%'}}>
           {docResult(datum).length}
         </div>
-        <div className={ clsx("flex-row-reverse  items-center justify-center border-l border-r flex-wrap pt-4 overflow-y-auto", !detail && 'flex') } style={{height: size}}>
+        <div className={ clsx("flex-row-reverse  items-center justify-center border-l border-r flex-wrap pt-4 overflow-y-auto overflow-x-hidden", !zoomed && 'flex') } style={{height: size}}>
           {docResult(datum).map(d =>
-            <div className="m-1 flex items-center" >
-              <img alt="doc" src={fileIconSrc} width={detail? 120:70} height={detail?120:70}/>
-              {detail && d.title}
+            <div className="m-1 flex items-center pb-1 border-b-2 border-solid border-gray-300" >
+              <img alt="doc" src={fileIconSrc} width={zoomed? 50:70} height={zoomed?50:70}/>
+              {zoomed && d.title}
             </div>
           )}
         </div>
@@ -93,7 +92,6 @@ const DocPreview = (props) => {
           <button onClick={onClick} >
             {zoomed? <ZoomOut size={40}/>:<ZoomIn size={40}/>}
           </button>
-          <button onClick={() => setDetail(!detail)}><List size={40}/></button>
         </div>
       </div>
 }
@@ -130,13 +128,14 @@ const TagDetail = (props)=> {
 
   const arcs = pie(tags.filter(t => selectedKeys.includes(t.key)));
 
+  const zoomed = radFac ===ZOOMED_FAC;
 
   return <div className={ clsx(`bg-white h-full w-full relative flex flex-col
       items-between`, className) }>
       <div className="flex justify-between">
         <h2
           className={
-            clsx("p-2 text-left", smallScreen ? 'text-xl': 'text-2xl' )}>
+            clsx("p-2 text-left text-bold", smallScreen ? 'text-xl': 'text-2xl' )}>
           #{datum.key}
         </h2>
         <button className="z-10 mx-2 my-1" onClick={onClose}><X/></button>
@@ -153,13 +152,13 @@ const TagDetail = (props)=> {
             dy="0.33em"
             style={{fontSize: '1.3rem'}}
             textAnchor="middle"
-            transform={`translate(${arc.centroid(d)}) rotate(${angle(d)})`} >{d.data.key} </text>)
+            transform={`translate(${arc.centroid(d)}) rotate(${angle(d)})`} >{!zoomed &&d.data.key} </text>)
           }
         </g>
       </svg>
       <DocPreview
         onClick={toggleRadFac}
-        zoomed={radFac ===ZOOMED_FAC}
+        zoomed={zoomed}
         datum={datum}
         size={innerRad*2}
         selectedKeys={selectedKeys}
@@ -185,7 +184,7 @@ const Extendable = (props)=> {
     style={{
       left: ext? width/2: left,
       top: ext ? height/2:top,
-      transform: `rotate(${Math.random() <0.5 ? '-':'+'}${Math.random()* 0}deg)`,
+      transform: `rotate(${Math.random() <0.5 ? '-':'+'}${Math.random()* 3}deg)`,
       height:ext? `${80}vh`:Math.max(50,height),
       width:ext? `${80}vh`:width,
       //TODO
@@ -193,7 +192,7 @@ const Extendable = (props)=> {
       marginRight: ext && '20vh',
       // maxHeight: 800,
       // maxWidth: 800,
-      transition: 'all 400ms',
+      transition: 'left 400ms, top 400ms, width 400ms, height 400ms',
       boxShadow: '5px 5px gray'
     }}
         className={clsx( "border-2 border-black" , ext ? 'z-50 fixed': 'z-10 absolute bg-yellow-100') }>
@@ -271,12 +270,12 @@ var collisionForce = rectCollide()
 
 function makeTreemap({data, width, height, padX, padY, key, selectedKeys}) {
   const ratio = 0.8;
-  const h = !key ? data.length* 10: data.length*20;
+  const h = !key ? 100+data.length* 10: 100+data.length*20;
 
   const sorted = sortBy(data, a => selectedKeys.includes(a.key));
   const myTreeMap = treemap()
     .size([( width / ratio ) , h])
-    .paddingInner(0)
+    .paddingInner(14)
     .round(true)
     .tile(treemapSpiral);
 
@@ -290,8 +289,8 @@ function makeTreemap({data, width, height, padX, padY, key, selectedKeys}) {
   if (!root.children) return [];
   root.children.forEach(d => {
     d.datum = d.data;
-    d.left = padX / 2 + Math.round(d.x0 * ratio);
-    d.top = padY / 2 + Math.round(d.y0);
+    d.left = padX / 2 + d.x0 * ratio ;
+    d.top = padY / 2 + Math.round(d.y0)+ Math.random() * 20;
 
     d.width = Math.round(d.x1 * ratio) - Math.round(d.x0 * ratio) - padX / 2;
     d.height = Math.round(d.y1) - Math.round(d.y0) - padY / 2;
@@ -318,7 +317,7 @@ export default function TagCloud(props) {
       .map(d => ({...d, weight:d.values.length **2 }))
       .sort((a,b) => b.weight-a.weight)
 
-    const treeFn = nodes =>  makeTreemap({data: nodes.filter(d => d.weight>1).slice(0, smallScreen ? 25:200), width, height, padX:25, padY: 35, key, selectedKeys})
+    const treeFn = nodes =>  makeTreemap({data: nodes.filter(d => d.weight>1).slice(0, smallScreen ? 25:200), width, height, padX:0, padY: 0, key, selectedKeys})
 
     setTiles(treeFn(nodes));
   }, [data, data.length, height, key, selectedKeys, smallScreen, width])
@@ -335,6 +334,7 @@ export default function TagCloud(props) {
     <div style={{width, height}}>
       {tiles.map(d =>
         <TagCont selected={selectedKeys.includes(d.datum.key)}
+          key={d.key}
           smallScreen={smallScreen} {...d} extended={d.datum.key===key} data={data}
           onSelect={() => filterByTag(d.datum.key)}
           onReset={() => resetData(d.datum.key)}
