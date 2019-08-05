@@ -27,16 +27,34 @@ const MoreTags = (props)=> {
   const [ext, setExt] = useState(false);
   const slicedTags =  sortBy(tags.filter(d => !selectedKeys.includes(d.key)).slice(0, ext ? 100: 10));
 
+
+  const max = d3.max(slicedTags, d => d.value.length);
+
+
   return <div className={
-    clsx('flex flex-wrap bg-myLightRed z-50 ', className) } style={{transition: 'all 300ms'}}>
+    clsx('bg-myLightRed z-50', className, !ext && 'flex flex-wrap ', ext && 'overflow-y-auto w-full') } style={{transition: 'all 300ms', maxHeight: '30rem', display: ext&&'grid',
+      gridTemplateColumns: ext&& 'auto auto auto auto'
+    }}>
     {slicedTags.map(d =>
-      <button
-        onClick={()=> onAdd(d)}
-        className={ clsx( 'mx-1 text-xl',
-          selectedKeys.includes(d.key) && "font-bold" ) }>
-        #{d.key}
-      </button>)}
-      <button className="ml-1 border-4 px-1 text-xl"
+        <div
+          role="button"
+          onClick={()=> onAdd(d)}
+          className={ clsx( 'cursor-pointermx-1 ',
+            ext ? 'text-xl': 'text-xl',
+            selectedKeys.includes(d.key) && "font-bold" ) }>
+      {!ext && `#${d.key}`}
+
+      {ext && <div className="">
+        <div>#{d.key}</div>
+        <div className="m-1 border h-8 bg-mypink" style={{width: `${ d.value.length * 98/ max}%`}}>
+          <div className="absolute">{d.value.length}</div>
+          {d.value.map(d => <svg className="w-12 h-12"src={fileIconSrc} />)}
+        </div>
+          </div>
+      }
+      </div>
+    )}
+      <button className={ clsx( "ml-1 border-4 px-1 text-xl font-bold", ext&& 'fixed bottom-0 right-0' ) }
         onClick={()=> setExt(!ext)}>
         {ext ? 'less...': 'More...'}
       </button>
@@ -44,28 +62,21 @@ const MoreTags = (props)=> {
 }
 
 const DocPreview = (props) => {
-  const {style, datum, selectedKeys}=props;
+  const {style, datum, selectedKeys, size}=props;
 
-  const docResult = d=> d.values.filter(d => d.tags.find(t => selectedKeys.includes(t))).length
+  const docResult = d=> d.values.filter(d => d.tags.find(t => selectedKeys.includes(t)))
       return <div
-        style={style}
-        className="absolute overflow-hidden flex items-center justify-center rounded-full border-2 ">
-        <div className="text-3xl text-center" style={{minWidth: '20%'}}>
-          {docResult(datum)}
+        style={{ ...style, width: size, height: size}}
+        className="absolute bg-white overflow-hidden flex items-center justify-center rounded-full border-2 ">
+        <div className="flex flex-row-reverse  items-center justify-center border-r-2 flex-wrap pt-4 overflow-y-auto" style={{height: size}}>
+          {docResult(datum).map(d =>
+          <div className="m-1" style={{height: 70}}>
+            <img alt="doc" src={fileIconSrc} width={70} height={70}/>
+          </div>
+          )}
         </div>
-        <div className="flex flex-wrap border-l-2 border-black pt-4">
-          <div className="m-1">
-            <img src={fileIconSrc} width={70} height={70}/>
-          </div>
-          <div className="m-1">
-            <img src={fileIconSrc} width={70} height={70}/>
-          </div>
-          <div className="m-1">
-            <img src={fileIconSrc} width={70} height={70}/>
-          </div>
-          <div className="m-1">
-            <img src={fileIconSrc} width={70} height={70}/>
-          </div>
+        <div className="text-3xl text-center" style={{minWidth: '20%'}}>
+          {docResult(datum).length}
         </div>
       </div>
 }
@@ -74,9 +85,9 @@ const DocPreview = (props) => {
 const TagDetail = (props)=> {
   const {datum, smallScreen, className, onClose, size}=props;
 
-  const pad=0
+  const pad=50
   const [bind, {width:w, height:h}] = useMeasure();
-  const radius = h/2 +pad;
+  const radius = h/2 -pad;
   const innerRad = radius * 0.53;
   const innerRadPad = 0;
   const arc = d3.arc().innerRadius(innerRad).outerRadius(radius - 1);
@@ -84,7 +95,6 @@ const TagDetail = (props)=> {
     .flat();
 
   const nested = Array.from(group(spread, d=> d.tag), ([ key, value ]) => ({key, value})).filter(d =>d.key !==datum.key)
-
 
   const tags=sortBy(nested, d => -d.value.length)
   const [selectedKeys, setSelectedKeys] = useState(tags.slice(0,10)
@@ -113,7 +123,7 @@ const TagDetail = (props)=> {
     </div>
     <div {...bind} className="flex flex-col flex-grow relative z-20">
       <svg  className="flex-grow" >
-        <g transform={`translate(${w/2}, ${h/2})`}>
+        <g transform={`translate(${w/2}, ${h/2-pad})`}>
           {arcs.map(d => <path
             onClick={()=> onTagAdd(d.data)}
             className="fill-current text-teal-200" d={arc(d)}/>)
@@ -123,21 +133,21 @@ const TagDetail = (props)=> {
             dy="0.33em"
             style={{fontSize: '1.3rem'}}
             textAnchor="middle"
-            transform={`translate(${arc.centroid(d)}) rotate(${angle(d)})`}
-className="" >{d.data.key} </text>)
+            transform={`translate(${arc.centroid(d)}) rotate(${angle(d)})`} >{d.data.key} </text>)
           }
         </g>
       </svg>
       <DocPreview
         datum={datum}
+        size={innerRad*2}
         selectedKeys={selectedKeys}
-        style={{left: w/2 -innerRad, top: h/2 -innerRad, transform: 'translate(100, 100)', width: innerRad *2, height:innerRad *2,
-        shapeOutside: "circle(70% at 0% 50%) border-box"
+        style={{left: w/2 -innerRad, top: h/2 -innerRad-pad, width: innerRad *2, height:innerRad *2,
+        // shapeOutside: "circle(70% at 0% 50%) border-box"
         }}
       >
       </DocPreview>
     </div>
-    <MoreTags selectedKeys={selectedKeys} onAdd={onTagAdd} className="absolute bottom-0" tags={nested}/>
+    <MoreTags selectedKeys={selectedKeys} onAdd={onTagAdd} className="absolute bottom-0 left-0" tags={nested}/>
   </div>
 }
 
@@ -150,19 +160,24 @@ const Extendable = (props)=> {
       left: ext? width/2: left,
       top: ext ? height/2:top,
       transform: `rotate(${Math.random() <0.5 ? '-':'+'}${Math.random()* 0}deg)`,
-      height:ext? `${extHeight}vh`:Math.max(50,height),
-      width:ext? `${extHeight}vh`:width,
+      height:ext? `${80}vh`:Math.max(50,height),
+      width:ext? `${80}vh`:width,
+      //TODO
+      marginLeft: ext && '20vh',
+      marginRight: ext && '20vh',
+      // maxHeight: 800,
+      // maxWidth: 800,
       transition: 'all 400ms',
       boxShadow: '5px 5px gray'
     }}
-        className={clsx( "m-auto border-2 border-black" , ext ? 'z-50 fixed': 'z-10 absolute bg-yellow-100') }>
-        {children}
+        className={clsx( "border-2 border-black" , ext ? 'z-50 fixed': 'z-10 absolute bg-yellow-100') }>
+        <div className="h-full m-auto">{children}</div>
       </div>
 }
 
 const TagPreview = (props)=> {
   const {selected, smallScreen, datum, onReset, onOpen}=props;
-  return <button className={ clsx("h-full text-black flex w-full items-center", selected ? 'bg-red-500' : 'bg-teal-100') }>
+  return <button className={ clsx("h-full text-black flex w-full items-center", selected ? 'bg-myLightRed' : 'bg-teal-100') }>
     <div
       className={ clsx( "w-full truncate p-1 flex", smallScreen ? 'text-xl': 'text-2xl' ) }>
       {selected &&
@@ -197,7 +212,6 @@ const TagCont = (props) => {
     !selected && onSelect(datum.key);
   }
 
-  const s = 80; //Math.min(100,20+fData.length )
   return <Extendable
     onClick={onClick}
     ext={ext}
@@ -205,8 +219,6 @@ const TagCont = (props) => {
     top={top}
     height={height}
     width={width}
-    extHeight={s}
-    extWidth={s}
     style={{
     }}>
         {ext ?
@@ -232,21 +244,21 @@ var collisionForce = rectCollide()
 
 
 function makeTreemap({data, width, height, padX, padY, key, selectedKeys}) {
-  const ratio = 1.5;
+  const ratio = 0.8;
   const h = !key ? data.length* 10: data.length*20;
 
-  const sorted = sortBy(data, a => !selectedKeys.includes(a.key));
+  const sorted = sortBy(data, a => selectedKeys.includes(a.key));
   const myTreeMap = treemap()
-    .size([width / ratio , h])
+    .size([( width / ratio ) , h])
     .paddingInner(0)
     .round(true)
     .tile(treemapSpiral);
 
   const size = scaleLinear()
     .domain(extent(data, d => d.weight))
-    .range([30, 100]);
+    .range([50, 200]);
 
-  const first = {name: 'root', children: sorted};
+  const first = {name: 'root', children: data};
   const root = hierarchy(first).sum(d => size(d.weight));
   myTreeMap(root);
   if (!root.children) return [];
@@ -264,7 +276,7 @@ function makeTreemap({data, width, height, padX, padY, key, selectedKeys}) {
 
 export default function TagCloud(props) {
 
-  const {className, data, setData, selectedKeys, resetData}=props
+  const {className, data, setData, selectedKeys, resetData, style}=props
 
   const [bind, {width, height}] = useMeasure();
 
@@ -280,7 +292,7 @@ export default function TagCloud(props) {
       .map(d => ({...d, weight:d.values.length **2 }))
       .sort((a,b) => b.weight-a.weight)
 
-    const treeFn = nodes =>  makeTreemap({data: nodes.slice(0, smallScreen ? 25:75), width, height, padX:25, padY: 35, key, selectedKeys})
+    const treeFn = nodes =>  makeTreemap({data: nodes.filter(d => d.weight>1).slice(0, smallScreen ? 25:200), width, height, padX:25, padY: 35, key, selectedKeys})
 
     setTiles(treeFn(nodes));
   }, [data, data.length, height, key, selectedKeys, smallScreen, width])
@@ -292,7 +304,7 @@ export default function TagCloud(props) {
     setData([ k, data.filter(d => d.tags.includes(k)) ]);
   }
 
-  return <div {...bind} className={clsx("relative overflow-y-auto flex-grow", className)}>
+  return <div {...bind} className={clsx("relative overflow-y-auto flex-grow", className)} style={style}>
     {selNode && <div>{selNode.datum.id} </div>}
     <div style={{width, height}}>
       {tiles.map(d =>

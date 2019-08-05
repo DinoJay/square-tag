@@ -39,22 +39,26 @@ function App() {
 
 
   return (
-    <div className="bg-yellow-100 h-screen w-screen flex flex-col md:px-32 md:pb-8">
+    <div className="bg-yellow-100 h-screen w-screen flex flex-col md:px-32 lg:px-128 md:pb-8 ">
       <h1 className="text-3xl m-2">TagVis</h1>
       <BreadCrumbs keys={keys} onSplice={spliceData}/>
       <TimeLine
         onClick={()=>
             setKeyData([keyData[0], keyData[1].slice(0, 20)])}
-            selectedKey={keyData[0]} data={keyData[1]}/>
-      <div className="flex-grow flex sm:flex-row flex-col ">
+            selectedKey={keyData[0]} data={keyData[1]}
+      />
+      <div className="flex-grow flex flex-col lg:flex-row flex-col ">
         <TagCloud selectedKeys={keys}
+          style={{minHeight: 300}}
           className="mb-3 pr-3" data={keyData[1]} initData={initData}
           setData={([k, newData])=> {
             setKeyData([k, newData])
             dictRef.current.push([k, keyData[1]])
           }}
           resetData={spliceData} />
-        <Grid className="flex-grow h-full mt-4" style={{ maxWidth: 400, }} data={keyData[1]} />
+        <Grid className="flex-grow md:h-full mt-4"
+          style={{ maxWidth: 400, }} data={keyData[1]}
+        />
     </div>
     </div>
   );
