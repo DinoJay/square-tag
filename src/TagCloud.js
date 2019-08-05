@@ -13,40 +13,47 @@ import {scaleLinear, treemap, extent, hierarchy}  from 'd3';
 import treemapSpiral from './treemapSpiral';
 import {group} from 'd3-array'
 import clsx from 'clsx';
-import { Plus, Minus, X } from 'react-feather';
+import { Plus, Minus, X, ZoomIn, ZoomOut, List} from 'react-feather';
 import useMeasure from './useMeasure';
 
-  function angle(d) {
-      var a = (d.startAngle + d.endAngle) * 90 / Math.PI - 90;
-      return a > 90 ? a - 180 : a;
-    }
+function angle(d) {
+    var a = (d.startAngle + d.endAngle) * 90 / Math.PI - 90;
+    return a > 90 ? a - 180 : a;
+  }
 
 
 const MoreTags = (props)=> {
   const {tags, className, selectedKeys, onAdd}=props
   const [ext, setExt] = useState(false);
-  const slicedTags =  sortBy(tags.filter(d => !selectedKeys.includes(d.key)).slice(0, ext ? 100: 10));
+  const slicedTags =  sortBy(sortBy(tags.filter(d => !selectedKeys.includes(d.key)).slice(0, ext ? 100: 10)), d => d.value.length).reverse();
 
 
   const max = d3.max(slicedTags, d => d.value.length);
 
+  if(slicedTags.length === 0) return null;
 
   return <div className={
-    clsx('bg-myLightRed z-50', className, !ext && 'flex flex-wrap ', ext && 'overflow-y-auto w-full') } style={{transition: 'all 300ms', maxHeight: '30rem', display: ext&&'grid',
-      gridTemplateColumns: ext&& 'auto auto auto auto'
+    clsx('bg-white border-t-2 overflow-hidden z-50 w-full', className,
+      ext && ' p-2 ') }
+      style={{transition: 'all 300ms', maxHeight:ext ? '30rem': '5rem',
     }}>
+    <div className="relative m-1 overflow-y-auto flex flex-wrap "
+    style={{transition: 'all 300ms', maxHeight: '30rem', display: ext&&'grid',
+      gridTemplateColumns: ext&& 'auto auto auto auto'
+    }}
+    >
     {slicedTags.map(d =>
-        <div
-          role="button"
-          onClick={()=> onAdd(d)}
-          className={ clsx( 'cursor-pointermx-1 ',
-            ext ? 'text-xl': 'text-xl',
-            selectedKeys.includes(d.key) && "font-bold" ) }>
-      {!ext && `#${d.key}`}
+      <div
+      role="button"
+      onClick={()=> onAdd(d)}
+      className={ clsx('cursor-pointer mx-1 ',
+        ext ? 'text-xl': 'text-xl',
+        selectedKeys.includes(d.key) && "font-bold" ) }>
+        {!ext && `#${d.key}`}
 
       {ext && <div className="">
         <div>#{d.key}</div>
-        <div className="m-1 border h-8 bg-mypink" style={{width: `${ d.value.length * 98/ max}%`}}>
+        <div className="m-1 border h-8 bg-teal-100" style={{width: `${ d.value.length * 98/ max}%`}}>
           <div className="absolute">{d.value.length}</div>
           {d.value.map(d => <svg className="w-12 h-12"src={fileIconSrc} />)}
         </div>
@@ -54,6 +61,7 @@ const MoreTags = (props)=> {
       }
       </div>
     )}
+    </div>
       <button className={ clsx( "ml-1 border-4 px-1 text-xl font-bold", ext&& 'fixed bottom-0 right-0' ) }
         onClick={()=> setExt(!ext)}>
         {ext ? 'less...': 'More...'}
@@ -62,21 +70,30 @@ const MoreTags = (props)=> {
 }
 
 const DocPreview = (props) => {
-  const {style, datum, selectedKeys, size}=props;
+  const {style, datum, selectedKeys, zoomed, size, onClick}=props;
 
+  const [detail, setDetail] = useState(false);
   const docResult = d=> d.values.filter(d => d.tags.find(t => selectedKeys.includes(t)))
+
       return <div
         style={{ ...style, width: size, height: size}}
         className="absolute bg-white overflow-hidden flex items-center justify-center rounded-full border-2 ">
-        <div className="flex flex-row-reverse  items-center justify-center border-r-2 flex-wrap pt-4 overflow-y-auto" style={{height: size}}>
-          {docResult(datum).map(d =>
-          <div className="m-1" style={{height: 70}}>
-            <img alt="doc" src={fileIconSrc} width={70} height={70}/>
-          </div>
-          )}
-        </div>
         <div className="text-3xl text-center" style={{minWidth: '20%'}}>
           {docResult(datum).length}
+        </div>
+        <div className={ clsx("flex-row-reverse  items-center justify-center border-l border-r flex-wrap pt-4 overflow-y-auto", !detail && 'flex') } style={{height: size}}>
+          {docResult(datum).map(d =>
+            <div className="m-1 flex items-center" >
+              <img alt="doc" src={fileIconSrc} width={detail? 120:70} height={detail?120:70}/>
+              {detail && d.title}
+            </div>
+          )}
+        </div>
+        <div className="text-3xl flex flex-col items-center" style={{minWidth: '20%'}}>
+          <button onClick={onClick} >
+            {zoomed? <ZoomOut size={40}/>:<ZoomIn size={40}/>}
+          </button>
+          <button onClick={() => setDetail(!detail)}><List size={40}/></button>
         </div>
       </div>
 }
@@ -84,11 +101,14 @@ const DocPreview = (props) => {
 
 const TagDetail = (props)=> {
   const {datum, smallScreen, className, onClose, size}=props;
-
+  const INIT_FAC=0.53;
+  const ZOOMED_FAC=0.82;
+  const [radFac, setRadFac]=useState(INIT_FAC);
+  const toggleRadFac = ()=> setRadFac(radFac===INIT_FAC ? ZOOMED_FAC: INIT_FAC);
   const pad=50
   const [bind, {width:w, height:h}] = useMeasure();
   const radius = h/2 -pad;
-  const innerRad = radius * 0.53;
+  const innerRad = radius * radFac;
   const innerRadPad = 0;
   const arc = d3.arc().innerRadius(innerRad).outerRadius(radius - 1);
   const spread = datum.values.map(d => d.tags.map(tag => ({...d, tag})))
@@ -138,10 +158,16 @@ const TagDetail = (props)=> {
         </g>
       </svg>
       <DocPreview
+        onClick={toggleRadFac}
+        zoomed={radFac ===ZOOMED_FAC}
         datum={datum}
         size={innerRad*2}
         selectedKeys={selectedKeys}
-        style={{left: w/2 -innerRad, top: h/2 -innerRad-pad, width: innerRad *2, height:innerRad *2,
+        style={{
+          left: w/2 -innerRad,
+          top: h/2 -innerRad-pad,
+          width: innerRad *2,
+          height:innerRad *2,
         // shapeOutside: "circle(70% at 0% 50%) border-box"
         }}
       >
