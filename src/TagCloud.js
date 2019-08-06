@@ -183,8 +183,8 @@ const Extendable = (props)=> {
   return <div onClick={onClick}
     style={{
       left: ext? width/2: left,
-      top: ext ? height/2:top,
-      transform: `rotate(${Math.random() <0.5 ? '-':'+'}${Math.random()* 3}deg)`,
+      top: ext ? height/2:top+Math.random() *5 *(Math.random < 0.5 ? -1:1),
+      transform: `rotate(${Math.random() <0.5 ? '-':'+'}${Math.random()* 1}deg)`,
       height:ext? `${80}vh`:Math.max(50,height),
       width:ext? `${80}vh`:width,
       //TODO

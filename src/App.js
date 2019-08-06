@@ -43,8 +43,7 @@ function App() {
       <h1 className="text-3xl m-2">TagVis</h1>
       <BreadCrumbs keys={keys} onSplice={spliceData}/>
       <TimeLine
-        onClick={()=>
-            setKeyData([keyData[0], keyData[1].slice(0, 20)])}
+        onClick={() => setKeyData([keyData[0], keyData[1].slice(0, 20)])}
             selectedKey={keyData[0]} data={keyData[1]}
       />
       <div className="flex-grow flex flex-col lg:flex-row flex-col ">
