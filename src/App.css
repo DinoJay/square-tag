@@ -38,3 +38,22 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.masonry-layout {
+  display: grid;
+  grid-template-columns: repeat(44, auto);
+  grid-gap: 15px 10px;
+  grid-auto-flow: dense;
+  grid-auto-rows: 1rem;
+
+}
+
+.masonry-el {
+  break-inside: avoid;
+  padding: 5px;
+}
+.masonry-layout-panel__content {
+  padding: 10px;
+  border-radius: 10px;
+}
+

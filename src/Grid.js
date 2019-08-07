@@ -12,7 +12,7 @@ export default function Grid(props) {
   const maxCount=30;
   const maxPage = Math.ceil(data.length/maxCount)
 
-  return <div className={clsx( className, 'flex flex-col w-full')} style={style}>
+  return <div className={clsx( className, 'flex flex-col w-full overflow-y-auto')} style={style}>
     <div className="flex flex-wrap">{range(0, maxPage).map(d =>
       <button className={ clsx("m-1 border-2 border-gray p-1", startPage===d && 'bg-gray-600') } onClick={() => setStartPage(d)}>{d}</button>)}
     </div>

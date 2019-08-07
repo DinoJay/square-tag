@@ -14,12 +14,6 @@ import BreadCrumbs from './BreadCrumbs';
 
 const parseTime=timeParse('%Y/%m/%d %H:%M:%S %Z')
 
-// const distanceTag = (a, b) =>{
-//   let intersection =
-//        a.filter(x => b.includes(x));
-//   return 1/( intersection.length===0 ? 0.01: intersection.length)
-// }
-
 const initData = diigo.filter(d => d.tags).map(d => ({...d,
     tags: d.tags.split(','),
     date: parseTime(d.updated_at)
@@ -56,7 +50,7 @@ function App() {
           }}
           resetData={spliceData} />
         <Grid className="flex-grow md:h-full mt-4"
-          style={{ maxWidth: 400, }} data={keyData[1]}
+          style={{ maxWidth: 400}} data={keyData[1]}
         />
     </div>
     </div>
