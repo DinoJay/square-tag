@@ -49,7 +49,7 @@ module.exports = {
         900: '#7b341e',
       },
       yellow: {
-        100: '#fffcdd',
+        100: '#fffcdd61',
         200: '#fefcbf',
         300: '#faf089',
         400: '#f6e05e',

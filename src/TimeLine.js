@@ -35,6 +35,6 @@ export default function TimeLine(props) {
 
   console.log('click', groupedData);
   return <div className={clsx(className, 'flex')}>
-    {groupedData.map(d=> <div onClick={() => onClick(d)}className="flex items-center border m-1 border-2 p-2" style={{width: 100/groupedData.length+'%' }}><div>{d.key}</div> </div>)}
+    {groupedData.map(d=> <div onClick={() => onClick(d)} className="rounded-full flex items-center border m-1 border-2 border-black p-2" style={{width: 100/groupedData.length+'%' }}><div>{d.key}</div> </div>)}
     </div>
 }
