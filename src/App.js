@@ -21,7 +21,7 @@ const initData = diigo.filter(d => d.tags).map(d => ({...d,
 
 
 function App() {
-  const [keyData, setKeyData] = useState([ 'all', initData, null])
+  const [keyData, setKeyData] = useState([ 'all', initData, null, 'year'])
   const [startPage, setStartPage]=useState(0);
   const pageLen=100;
   const pages = [ startPage * pageLen, startPage*pageLen+pageLen ];
@@ -34,8 +34,9 @@ function App() {
       .splice(dictRef.current.findIndex(d => d[0] === k));
   }
 
-  console.log('keyData', keyData);
   const slicedData= keyData[1].slice(...(keyData[1].length > pages[0]? pages : [0, 500]));
+
+  const timeStr = keyData[3];
 
   console.log('slicedData', slicedData, 'pages', pages);
 
@@ -44,10 +45,11 @@ function App() {
       <h1 className="text-3xl m-2">TagVis</h1>
       <BreadCrumbs keys={keys} onSplice={spliceData}/>
       <TimeLine
+        timeDim={timeStr}
+        initData={initData}
         className="mb-3"
-
-        onClick={() => setKeyData([keyData[0], keyData[1].slice(0, 20)])}
-            selectedKey={keyData[0]} data={keyData[1]}
+        onClick={(d) => setKeyData([keyData[0], d.docs, d.key, timeStr==='year' ? 'month': 'year'])}
+        selectedKey={keyData[2]} data={keyData[1]}
       />
       <div className="flex-grow flex flex-col lg:flex-row flex-col ">
         <TagCloud selectedKeys={keys}
@@ -60,8 +62,11 @@ function App() {
             dictRef.current.push([k, keyData[1]])
           }}
           resetData={spliceData} />
-          <Grid key={keyData[1].map(d => d.key).join(',')} pageLen={pageLen} pages={pages} startPage={startPage} setStartPage={setStartPage} className="flex-grow md:h-full mt-4"
-          style={{ maxWidth: 600}} data={keyData[1]}
+
+        <Grid key={keyData[1].map(d => d.key).join(',')}
+          pageLen={pageLen} pages={pages} startPage={startPage}
+          setStartPage={setStartPage} className="flex-grow md:h-full mt-4"
+          style={{ maxWidth: 550}} data={keyData[1]}
         />
       </div>
     </div>
