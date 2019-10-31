@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {group} from 'd3-array'
 import { timeFormat } from 'd3-time-format';
+import {ArrowLeft} from 'react-feather';
 import clsx from 'clsx';
 
 import { Flipper, Flipped } from 'react-flip-toolkit'
@@ -54,12 +55,12 @@ export default function TimeLine(props) {
     {cache.current.length !== 0 && <div className="rounded-full px-1 flex items-center border m-1" onClick={() => {
       onClick({docs: cache.current.pop(), key: null })
     }}>
-      back
+      <button><ArrowLeft className="m-1 text-red"/></button>
     </div>
     }
     {groupedData
       .map(d =>
-        <div onClick={!selectedKey && (() => {
+        <div flipId={d.key} onClick={!selectedKey && (() => {
           onClick(d)
           cache.current.push(data);
         })} className={
@@ -67,7 +68,7 @@ export default function TimeLine(props) {
           'border-2 border-black p-2 flex-grow' ) }
         >
         {cache.current.length === 0 &&<div>{d.key}</div>}
-        <div className="flex-grow flex">
+        <div className="flex-grow flex flex-wrap">
           {( cache.current.length===1 || cache.current.length===2 ) && d.value.map(d =>
             <button
               disabled={cache.current.length ===2}

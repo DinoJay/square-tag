@@ -38,11 +38,10 @@ function App() {
 
   const timeStr = keyData[3];
 
-  console.log('slicedData', slicedData, 'pages', pages);
 
   return (
-    <div className="bg-yellow-100 h-screen w-screen flex flex-col md:px-32 xl:px-128 md:pb-8 ">
-      <h1 className="text-3xl m-2">TagVis</h1>
+    <div className="bg-yellow-100 h-screen w-screen flex flex-col md:px-32 xl:px-128 md:pb-8 overflow-y-hidden">
+      <h1 className="text-4xl m-2">TagSeaVis</h1>
       <BreadCrumbs keys={keys} onSplice={spliceData}/>
       <TimeLine
         timeDim={timeStr}
@@ -51,11 +50,10 @@ function App() {
         onClick={(d) => setKeyData([keyData[0], d.docs, d.key, timeStr==='year' ? 'month': 'year'])}
         selectedKey={keyData[2]} data={keyData[1]}
       />
-      <div className="flex-grow flex flex-col lg:flex-row flex-col ">
+      <div className="flex-grow flex flex-col lg:flex-row flex-col " style={{transition:'all 300ms'}}>
         <TagCloud selectedKeys={keys}
           pages={pages}
-          style={{minHeight: 300}}
-          className="mb-3 pr-3" data={slicedData} initData={initData}
+          className="mb-3 pr-3 flex-grow" data={slicedData} initData={initData}
           setData={(k)=> {
             setKeyData([k, keyData[1].filter(d => d.tags.includes(k))])
             setStartPage(0);
@@ -65,7 +63,7 @@ function App() {
 
         <Grid key={keyData[1].map(d => d.key).join(',')}
           pageLen={pageLen} pages={pages} startPage={startPage}
-          setStartPage={setStartPage} className="flex-grow md:h-full mt-4"
+          setStartPage={setStartPage} className="flex-grow h-64 md:h-full mt-4"
           style={{ maxWidth: 550}} data={keyData[1]}
         />
       </div>

@@ -30,7 +30,7 @@ const angle = d => {
       setTimeout(() => {
         el.style.opacity = 1;
         el.classList.remove("fadeIn");
-      }, 500);
+      }, 300);
     }, i );
   }
 
@@ -56,10 +56,10 @@ const MoreTags = (props)=> {
       ext && 'p-2') }
       style={{transition: 'all 300ms', maxHeight:ext ? '50%': '8rem',
     }}>
-    <div className="h-full w-full flex flex-shrink-1 truncate overflow-hidden"
-    style={{transition: 'all 300ms', display: ext&&'grid',
-      gridTemplateColumns: ext&& 'auto auto auto auto',
-      // maxWidth: '80%'
+    <div
+      className="h-full w-full flex flex-shrink-1 truncate overflow-hidden"
+    style={{transition: 'all 300ms', display: ext && 'grid',
+      gridTemplateColumns: ext && 'auto auto auto auto',
     }}
     >
     {slicedTags.map(d =>
@@ -96,21 +96,20 @@ const DocPreview = (props) => {
 
   const docResult = d=> values.filter(d => d.tags.find(t => selectedKeys.includes(t)))
 
-  console.log('props', props);
-      return <div
-        style={{ ...style, transition: 'all 300ms',width: size, height: size}}
+  return(
+    <div style={{ ...style, transition: 'all 300ms',width: size, height: size}}
         className="absolute bg-yellow-100 overflow-hidden flex items-center justify-center rounded-full border-2 ">
         <div className="text-3xl text-center" style={{minWidth: '20%'}}>
           {values.filter(d => d.tags.find(t => selectedKeys.includes(t))).length}
         </div>
-        <div className={ clsx('flex-row-reverse items-center',
-          'border-l border-r flex-wrap pt-4 justify-center',
-          'overflow-y-auto overflow-x-hidden', !zoomed && 'flex')
+        <div className={ clsx(' flex-row-reverse items-center',
+          'border-l border-r flex-wrap py-8 justify-center',
+          'overflow-y-auto overflow-x-hidden ', !zoomed && 'flex')
         } style={{height: size, minWidth: '60%'}}>
           {zoomed && docResult(values).map(d =>
             <div
               className="m-1 flex items-center pb-1 border-b-2
-                         border-solid border-gray-300"
+                         border-solid border-gray-300 overflow-x-hidden"
             >
                  <img alt="doc" src={fileIconSrc} width={zoomed? 50:70}
                   height={zoomed ? 50 : 70}
@@ -130,7 +129,7 @@ const DocPreview = (props) => {
             }
           </button>
         </div>
-      </div>
+      </div>)
 }
 
 const pieHook = ({fData, zoomed, onSelectTag, onTagChange, cache, ref, innerRad, radius}) => {
@@ -171,7 +170,8 @@ const pieHook = ({fData, zoomed, onSelectTag, onTagChange, cache, ref, innerRad,
       .merge(groupWithData.select('path.arc'));
 
     path
-      .attr('class', 'arc fill-current text-myLightRed')
+      .attr('class', 'arc fill-current text-myLightRed cursor-pointer')
+      .on('click', d => onTagChange(d.data))
       .transition(500)
       .attrTween('d', arcTween);
 
@@ -191,13 +191,14 @@ const pieHook = ({fData, zoomed, onSelectTag, onTagChange, cache, ref, innerRad,
       .append('text')
       .merge(groupWithData.select('text.remove'))
       .on('click', d => onTagChange(d.data))
-      .attr('class', 'cursor-pointer remove fill-current font-bold text-black text-xl text-mypink')
-      .attr('dy', '0.53em')
+      .attr('class', 'cursor-pointer remove fill-current font-bold text-black text-xl ')
+      .attr('dy', '0.33em')
+      // .attr('dx', '0.53em')
       .attr('text-anchor', 'middle')
       .attr('transform', a =>
         `translate( ${bigArc.centroid(a)} ) rotate(${angle(a)})`
       )
-      .text(!zoomed ? 'ⓧ':null);
+      .text(!zoomed ? '◔':null);
 
 }
 
@@ -212,8 +213,6 @@ const Pie = props => {
   const cache = React.useRef(fData);
   const ref = React.useRef(null);
 
-
-  console.log('')
 
   useEffect(
     () => {
@@ -288,7 +287,6 @@ const TagDetail = (props)=> {
 const Extendable = (props)=> {
   const {extended:ext,id, weight, opacity, left, top, children, onClick} = props;
 
-
   return <Flipped flipId={id}
     onAppear={onAppear}
     onExit={onExit}
@@ -304,7 +302,7 @@ const Extendable = (props)=> {
         // top: ext && 'auto',
         // right:ext && 'auto',
         // bottom:ext && 'auto',
-        height: ext?'80vh':null,
+        height: ext ? '80vh':null,
         maxHeight: 600,
         maxWidth: 700,
         opacity,
@@ -323,15 +321,17 @@ const Extendable = (props)=> {
 
 const TagPreview = props => {
   const {selected, smallScreen, id, onReset, onOpen}=props;
-  return <button className={clsx("h-full truncate rounded-full text-black flex w-full items-center", selected ? 'bg-myLightRed' : 'bg-teal-100') }>
+  return <button className={clsx("h-full truncate rounded-full text-black flex w-full items-center", selected ? 'bg-myLightRed' : 'bg-teal-100') }
+  onClick={()=> selected && onOpen()}
+  >
     <div
       className={ clsx( "w-full truncate p-1 flex",
-        smallScreen ? 'text-xl': 'text-2xl' ) }>
+        'text-xl md:text-2xl' ) } >
       {selected &&
         <button onClick={(e) => {
           e.stopPropagation();
           onReset();
-        }} className="mr-3 flex items-center"  ><Minus/></button> }
+        }} className="mr-3 flex items-center font-bold"  ><Minus/></button> }
         <div className="m-auto truncate flex-shrink"
           style={{minWidth:0}}>{id}</div>
 
@@ -384,13 +384,12 @@ var collisionForce = rectCollide()
 
 export default function TagCloud(props) {
 
-  const {className, data, setData, pages=[0, 100], selectedKeys, resetData, style}=props
+  const {className, data, setData, pages=[0, 100],
+    selectedKeys, resetData, style} = props
 
   const [key, setKey]=useState(null);
 
-  const filterByTag = k => {
-    setData(k);
-  }
+  const filterByTag = k => setData(k);
 
     const spreadData = data.map(d=> d.tags.map(tag => ({...d, tag}))).flat();
 
@@ -410,24 +409,25 @@ export default function TagCloud(props) {
 
 
 
-  return <Flipper flipKey={`${ nodes.map(d => d.key).join(',') }${key}`} className={clsx('masonry-layout overflow-y-auto flex-grow',
-                      className)}
-                      style={{ ...style,
-                      }}
-    >
-        {nodes.map((d) =>
-          <TagCont {...d} selected={selectedKeys.includes(d.key)}
-            extended={d.key === key}
-            key={d.key}
-            {...d} {...props}
-            onSelect={() => filterByTag(d.key)}
-            onReset={() => resetData(d.key)}
-            onOpen={() => setKey(d.key)}
-            onClose={() => setKey(null)}
-            id={d.key}
-          />
-        )}
-  </Flipper>
+  return <div className="overflow-y-auto w-auto sm:w-1/2 h-64  flex-grow sm:h-auto"><Flipper
+  flipKey={`${nodes.map(d => d.key).join(',') }${key}`}
+  className={clsx('masonry-layout overflow-y-auto flex-grow',
+    className, nodes.length < 10 ? 'masonry-small-layout': 'masonry-layout')}
+    style={{ ...style, }}
+  >
+    {nodes.map((d) =>
+      <TagCont {...d} selected={selectedKeys.includes(d.key)}
+        extended={d.key === key}
+        key={d.key}
+        {...d} {...props}
+        onSelect={() => filterByTag(d.key)}
+        onReset={() => resetData(d.key)}
+        onOpen={() => setKey(d.key)}
+        onClose={() => setKey(null)}
+        id={d.key}
+      />
+    )}
+</Flipper></div>
 }
 
 
