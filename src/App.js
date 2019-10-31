@@ -40,7 +40,7 @@ function App() {
 
 
   return (
-    <div className="bg-yellow-100 h-screen w-screen flex flex-col md:px-32 xl:px-128 md:pb-8 sm:overflow-y-hidden">
+    <div className="bg-yellow-100 h-screen w-screen flex flex-col md:px-32 xl:px-128 md:pb-8 overflow-y-hidden sm:overflow-y-auto">
       <h1 className="text-4xl m-2">TagSeaVis</h1>
       <BreadCrumbs keys={keys} onSplice={spliceData}/>
       <TimeLine
