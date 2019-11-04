@@ -21,12 +21,11 @@ const initData = diigoRaw.filter(d => d.tags).map(d => ({...d,
   }));
 
 
-// console.log('initData', initData);
-
 function App() {
   const [keyData, setKeyData] = useState([ 'all', initData, null, 'year'])
 
   const [startPage, setStartPage]=useState(0);
+  const [inputStr, setInputStr]=useState('');
   const pageLen =100;
   const pages = [ startPage * pageLen, startPage*pageLen+pageLen ];
 
@@ -38,13 +37,15 @@ function App() {
       .splice(dictRef.current.findIndex(d => d[0] === k));
   }
 
-  const slicedData= keyData[1].slice(...(keyData[1].length > pages[0]? pages : [0, 500]));
+const fn = d => inputStr==='' || d.title && d.title.toLowerCase && d.title.toLowerCase().includes(inputStr) || d.tags.find(t => t && t.toLowerCase().includes(inputStr))
+
+  const slicedData= keyData[1].slice(...(keyData[1].length > pages[0]? pages : [0, 1000])).filter(fn)
 
   const timeStr = keyData[3];
   const bigWindow = window && window.innerWidth > 800
   return (
     <div className="bg-yellow-100 h-screen w-screen flex flex-col md:px-32 xl:px-128 md:pb-8 overflow-y-hidden sm:overflow-y-auto">
-      <h1 className="text-4xl m-2">TagSeaVis 🌊</h1>
+      <h1 className="text-4xl m-2 italic">TagSeaVis 🔍🌊</h1>
       <BreadCrumbs keys={keys} onSplice={spliceData}/>
       <TimeLine
         timeDim={timeStr}
@@ -67,11 +68,18 @@ function App() {
             dictRef.current.push([k, keyData[1]])
           }}
           resetData={spliceData} />
-        <Grid key={keyData[1].map(d => d.key).join(',')}
-          pageLen={pageLen} pages={pages} startPage={startPage}
-          setStartPage={setStartPage} className="flex-grow h-64 md:h-full mt-4"
-          style={{ maxWidth:  bigWindow&& 550}} data={keyData[1]}
-        />
+        <div>
+          <input className="border p-1 w-full"
+            placeholder="Search for title or tag"
+            onChange={e => setInputStr(e.target.value)}
+
+          />
+          <Grid key={keyData[1].map(d => d.key).join(',')}
+            pageLen={pageLen} pages={pages} startPage={startPage}
+            setStartPage={setStartPage} className="flex-grow h-64 md:h-full mt-4"
+            style={{ width:  bigWindow&& 550}} data={keyData[1].filter(fn)}
+          />
+        </div>
       </div>
     </div>
   );
