@@ -35,6 +35,22 @@ const groupBy = (data)=> {
     ))
 }
 
+  const onAppear = (el, i) => {
+    setTimeout(() => {
+      el.classList.add("fadeIn");
+      setTimeout(() => {
+        el.style.opacity = 1;
+        el.classList.remove("fadeIn");
+      }, 200);
+    }, i );
+  }
+
+  const onExit = (el, i, removeElement) => {
+    setTimeout(() => {
+      el.classList.add("fadeOut");
+      setTimeout(removeElement, 100);
+    }, i );
+  }
 
 
 export default function TimeLine(props) {
@@ -43,16 +59,10 @@ export default function TimeLine(props) {
 
   const cache = React.useRef([]);
 
-  // useEffect(() => {
-  //   // cache.current.pop();
-  //   console.log('selectedKey', selectedKey);
-  // }, [data, data.length, selectedKey])
-
-
-  console.log('timeline cache', cache.current, 'selectedKey', selectedKey);
-
-  return <div className={clsx(className, 'flex')}>
-    {cache.current.length !== 0 && <div className="rounded-full px-1 flex items-center border m-1" onClick={() => {
+  return ( <Flipper flipKey={cache.current.length} className={clsx(className, 'flex')}>
+    {cache.current.length !== 0 &&
+      <div className="rounded-full px-1 flex items-center border m-1"
+      onClick={() => {
       onClick({docs: cache.current.pop(), key: null })
     }}>
       <button><ArrowLeft className="m-1 text-red"/></button>
@@ -60,27 +70,38 @@ export default function TimeLine(props) {
     }
     {groupedData
       .map(d =>
-        <div flipId={d.key} onClick={!selectedKey && (() => {
-          onClick(d)
-          cache.current.push(data);
-        })} className={
-        clsx('rounded-full flex items-center border m-1',
-          'border-2 border-black p-2 flex-grow' ) }
+        <Flipped flipId={d.key}
         >
-        {cache.current.length === 0 &&<div>{d.key}</div>}
-        <div className="flex-grow flex flex-wrap">
-          {( cache.current.length===1 || cache.current.length===2 ) && d.value.map(d =>
-            <button
-              disabled={cache.current.length ===2}
-              onClick={() => {
-              onClick(d)
-              cache.current.push(data);
-            }}
-            className="mx-1 px-1 rounded flex-grow">
-              {d.key}
-            </button>)
-          }
-        </div>
-      </div>)}
-    </div>
+          <button
+            key={d.key}
+            style={{transition: 'all 400ms'}}
+            disabled={cache.current.length >0}
+            onClick={!selectedKey ? (() => {
+            onClick(d)
+            cache.current.push(data);
+          }):undefined} className={
+          clsx('rounded-full flex items-center border m-1',
+               'border-2 border-black p-2 flex-grow cursor-pointer' ) }
+          >
+          {cache.current.length === 0 &&<div>{d.key}</div>}
+          <div className="flex-grow flex flex-wrap ">
+            {( cache.current.length>0) && d.value.map(d =>
+              <Flipped flipId={d.key}
+              >
+              <button
+                onClick={() => {
+                onClick(d)
+                cache.current.push(data);
+              }}
+              className="mx-1 px-1 mb-1 rounded flex-grow border">
+                {d.key}
+              </button>
+            </Flipped>)
+            }
+          </div>
+        </button>
+      </Flipped>
+      )}
+    </Flipper>
+  )
 }

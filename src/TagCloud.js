@@ -409,7 +409,7 @@ export default function TagCloud(props) {
 
 
 
-  return <div className="overflow-y-auto w-auto sm:w-1/2 h-64  flex-grow sm:h-auto"><Flipper
+  return <div className="overflow-y-auto w-auto lg:w-1/2 h-64  flex-grow sm:h-auto"><Flipper
   flipKey={`${nodes.map(d => d.key).join(',') }${key}`}
   className={clsx('masonry-layout overflow-y-auto flex-grow',
     className, nodes.length < 10 ? 'masonry-small-layout': 'masonry-layout')}
