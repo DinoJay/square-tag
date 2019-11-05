@@ -44,7 +44,7 @@ const fn = d => inputStr==='' || d.title && d.title.toLowerCase && d.title.toLow
   const timeStr = keyData[3];
   const bigWindow = window && window.innerWidth > 800
   return (
-    <div className="bg-yellow-100 h-screen w-screen flex flex-col md:px-32 xl:px-128 md:pb-8 overflow-y-hidden sm:overflow-y-auto">
+    <div className="bg-yellow-100 h-screen w-screen flex flex-col p-2 md:px-32 xl:px-64 md:pb-8 overflow-y-hidden sm:overflow-y-auto">
       <h1 className="text-4xl m-2 italic">TagSeaVis 🔍🌊</h1>
       <BreadCrumbs keys={keys} onSplice={spliceData}/>
       <TimeLine
@@ -57,8 +57,8 @@ const fn = d => inputStr==='' || d.title && d.title.toLowerCase && d.title.toLow
         }}
         selectedKey={keyData[2]} data={keyData[1]}
       />
-      <div className="flex-grow flex flex-col lg:flex-row flex-col lg:justify-center"
-        style={{transition:'all 300ms'}}>
+      <div className="flex-grow flex flex-col lg:flex-row flex-col lg:justify-center overflow-y-hidden"
+      >
         <TagCloud selectedKeys={keys}
           pages={pages}
           className="mb-3 pr-3 flex-grow pb-1" data={slicedData} initData={initData}
@@ -69,8 +69,8 @@ const fn = d => inputStr==='' || d.title && d.title.toLowerCase && d.title.toLow
           }}
           resetData={spliceData} />
         <div>
-          <input className="border p-1 w-full"
-            placeholder="Search for title or tag"
+          <input className="border p-1 w-full rounded"
+            placeholder="Search for Title or Tag"
             onChange={e => setInputStr(e.target.value)}
 
           />

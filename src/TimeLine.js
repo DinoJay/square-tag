@@ -59,9 +59,9 @@ export default function TimeLine(props) {
 
   const cache = React.useRef([]);
 
-  return ( <Flipper flipKey={cache.current.length} className={clsx(className, 'flex')}>
+  return ( <Flipper flipKey={cache.current.length} className={clsx(className, 'flex flex-wrap')}>
     {cache.current.length !== 0 &&
-      <div className="rounded-full px-1 flex items-center border m-1"
+      <div className="rounded-full px-1 flex items-center border m-1 flex-wrap"
       onClick={() => {
       onClick({docs: cache.current.pop(), key: null })
     }}>
@@ -74,7 +74,6 @@ export default function TimeLine(props) {
         >
           <button
             key={d.key}
-            style={{transition: 'all 400ms'}}
             disabled={cache.current.length >0}
             onClick={!selectedKey ? (() => {
             onClick(d)
