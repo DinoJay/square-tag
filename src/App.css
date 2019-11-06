@@ -1,9 +1,9 @@
 body {
   @apply .bg-yellow-200 .text-black;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  overflow: auto;
+  /* position: fixed; */
+  /* height: 100%; */
+  /* width: 100%; */
+  /* overflow: auto; */
 }
 
 .App {
