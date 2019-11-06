@@ -114,7 +114,7 @@ const DocPreview = (props) => {
                  <img alt="doc" src={fileIconSrc} width={zoomed? 50:70}
                   height={zoomed ? 50 : 70}
                 />
-              {d.title}
+              <a target="_blank" href={d.url}>{d.title}</a>
             </div>
           )}
               { !zoomed &&  <h2 className="text-3xl">#{id}</h2> }
@@ -408,24 +408,24 @@ export default function TagCloud(props) {
       .sort((a,b) => a.weight - b.weight)
 
       return (
-      <div className="overflow-y-auto w-auto lg:w-1/2 h-64  flex-grow sm:h-auto">
-    <Flipper
-  flipKey={`${nodes.map(d => d.key).join(',') }${key}`}
-  className={clsx('masonry-layout overflow-y-auto flex-grow',
-    className, nodes.length < 10 ? 'masonry-small-layout': 'masonry-layout')}
-    style={{ ...style, }}
-  >
-    {nodes.map((d) =>
-      <TagCont {...d} selected={selectedKeys.includes(d.key)}
-        extended={d.key === key}
-        key={d.key}
-        {...d} {...props}
-        onSelect={() => filterByTag(d.key)}
-        onReset={() => resetData(d.key)}
-        onOpen={() => setKey(d.key)}
-        onClose={() => setKey(null)}
-        id={d.key}
-      />
+      <div className={className}>
+      <Flipper
+        flipKey={`${nodes.map(d => d.key).join(',') }${key}`}
+        className={clsx('masonry-layout overflow-y-auto flex-grow',
+        nodes.length < 10 ? 'masonry-small-layout': 'masonry-layout')}
+        style={{ ...style, }}
+      >
+      {nodes.map((d) =>
+        <TagCont {...d} selected={selectedKeys.includes(d.key)}
+          extended={d.key === key}
+          key={d.key}
+          {...d} {...props}
+          onSelect={() => filterByTag(d.key)}
+          onReset={() => resetData(d.key)}
+          onOpen={() => setKey(d.key)}
+          onClose={() => setKey(null)}
+          id={d.key}
+        />
     )}
 </Flipper></div>)
 }

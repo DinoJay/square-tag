@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import * as d3 from 'd3';
-// import fetchJsonP from 'fetch-jsonp';
+import {ChevronsUp, ChevronsDown, ChevronsLeft, ChevronsRight} from 'react-feather';
 
 import {timeParse} from 'd3-time-format';
 
@@ -11,7 +11,6 @@ import TimeLine from './TimeLine';
 import TagCloud from './TagCloud';
 import Grid from './Grid';
 import BreadCrumbs from './BreadCrumbs';
-
 
 const parseTime=timeParse('%Y-%m-%d %H:%M:%S')
 
@@ -43,9 +42,15 @@ const fn = d => inputStr==='' || d.title && d.title.toLowerCase && d.title.toLow
 
   const timeStr = keyData[3];
   const bigWindow = window && window.innerWidth > 800
+  const height = window ? window.innerHeight:0;
+  const [gh, setGh]=useState(0);
+  const Chevron1 = bigWindow ? ChevronsLeft: ChevronsUp
+  const Chevron2 = bigWindow ? ChevronsRight: ChevronsDown
+  const flexGrow = bigWindow ? 20 : 100;
+
   return (
     <div className="bg-yellow-100 h-screen w-screen flex flex-col p-2 md:px-32 xl:px-64 md:pb-8 overflow-y-hidden sm:overflow-y-auto">
-      <h1 className="text-4xl m-2 italic">TagSeaVis 🔍🌊</h1>
+      <h1 className="text-4xl m-2 italic">TagSea🔍 🌊</h1>
       <BreadCrumbs keys={keys} onSplice={spliceData}/>
       <TimeLine
         timeDim={timeStr}
@@ -57,27 +62,48 @@ const fn = d => inputStr==='' || d.title && d.title.toLowerCase && d.title.toLow
         }}
         selectedKey={keyData[2]} data={keyData[1]}
       />
-      <div className="flex-grow flex flex-col lg:flex-row flex-col lg:justify-center overflow-y-hidden"
+      <div className="relative flex-grow flex flex-col lg:flex-row flex-col lg:justify-center overflow-y-hidden"
       >
-        <TagCloud selectedKeys={keys}
+        <TagCloud
+          selectedKeys={keys}
           pages={pages}
-          className="mb-3 pr-3 flex-grow pb-1" data={slicedData} initData={initData}
+          className="overflow-y-auto w-auto lg:w-1/2 flex-grow sm:h-auto"
+          data={slicedData}
+          initData={initData}
           setData={(k)=> {
             setKeyData([k, keyData[1].filter(d => d.tags.includes(k))])
             setStartPage(0);
             dictRef.current.push([k, keyData[1]])
           }}
-          resetData={spliceData} />
-        <div>
-          <input className="border p-1 w-full rounded"
-            placeholder="Search for Title or Tag"
-            onChange={e => setInputStr(e.target.value)}
-
-          />
-          <Grid key={keyData[1].map(d => d.key).join(',')}
+          resetData={spliceData}
+        />
+        <div className=" bg-yellow-100 z-10 flex flex-col"
+          style={{
+            minHeight: 0,
+            // minWidth: 0,
+            flex: `1 0 ${!gh ? 10:100}%`,
+            transition: 'all 300ms'}}
+          >
+          <div className="flex my-1">
+            <button className="border-2 rounded-full "
+              onClick={() => setGh(!gh? 1:0)}>
+              {!gh? <Chevron1/> : <Chevron2/>}
+            </button>
+            <div className="flex flex-grow ">
+              <input className="flex-grow border ml-1 p-1 rounded"
+                placeholder="Search for Title or Tag"
+                onChange={e => setInputStr(e.target.value)}
+              />
+            </div>
+          </div>
+          <Grid
+            key={keyData[1].map(d => d.key).join(',')}
             pageLen={pageLen} pages={pages} startPage={startPage}
-            setStartPage={setStartPage} className="flex-grow h-64 md:h-full mt-4"
-            style={{ width:  bigWindow&& 550}} data={keyData[1].filter(fn)}
+            setStartPage={setStartPage}
+            className="flex-grow md:h-full mt-4 h-64"
+            style={{ width: bigWindow && 550}}
+            bigWindow={bigWindow}
+            data={keyData[1].filter(fn)}
           />
         </div>
       </div>
