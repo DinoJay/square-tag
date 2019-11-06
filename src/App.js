@@ -67,7 +67,7 @@ const fn = d => inputStr==='' || d.title && d.title.toLowerCase && d.title.toLow
         <TagCloud
           selectedKeys={keys}
           pages={pages}
-          className="overflow-y-auto w-auto lg:w-1/2 flex-grow sm:h-auto"
+          className="overflow-y-auto w-auto lg:w-1/2 flex-grow "
           data={slicedData}
           initData={initData}
           setData={(k)=> {
@@ -81,7 +81,7 @@ const fn = d => inputStr==='' || d.title && d.title.toLowerCase && d.title.toLow
           style={{
             minHeight: 0,
             // minWidth: 0,
-            flex: `1 0 ${!gh ? 10:100}%`,
+            flex: `1 0 ${!gh ? 20:100}%`,
             transition: 'all 300ms'}}
           >
           <div className="flex my-1">

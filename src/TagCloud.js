@@ -58,9 +58,9 @@ const MoreTags = (props)=> {
     }}>
     <div
       className="h-full w-full flex flex-shrink-1 truncate overflow-hidden"
-    style={{transition: 'all 300ms', display: ext && 'grid',
-      gridTemplateColumns: ext && 'auto auto auto auto',
-    }}
+      style={{transition: 'all 300ms', display: ext && 'grid',
+        gridTemplateColumns: ext && 'auto auto auto auto',
+      }}
     >
     {slicedTags.map(d =>
       <div
