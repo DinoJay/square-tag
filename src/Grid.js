@@ -15,20 +15,20 @@ export default function Grid(props) {
   console.log('curPage', curPage);
   const offset=bigWindow ? 9 : 5;
   const cls = "m-1 rounded-full border-2 border-gray px-2"
-
+const disabledFirst = !( curPage>= offset  );
+  const disabledSecond = !( curPage < maxPage - offset );
   return (
   <div
     className={clsx(className,
     'flex flex-col w-full overflow-x-hidden overflow-y-auto')}
     style={style}
   >
-    <div className="flex flex-wrap items-center">
+    <div className="flex flex-wrap items-center justify-between">
 
-      {curPage>= offset &&
-          <button className={clsx(cls, 'flex items-center justify-center')} onClick={() => setCurPage(curPage-offset)}>
+          <button disabled={disabledFirst} className={clsx(cls, disabledFirst && 'opacity-50','flex items-center justify-center')}
+            onClick={() => setCurPage(curPage-offset)}>
             <ChevronsLeft/>
           </button>
-      }
       {
       range(curPage, curPage+offset).map(d =>
         <button
@@ -38,11 +38,9 @@ export default function Grid(props) {
             {d}
         </button>
         )}
-    { curPage < maxPage - offset &&
-          <button className={clsx(cls, 'flex items-center justify-center')} onClick={() => setCurPage(curPage+offset)}>
+          <button disabled={disabledSecond}className={clsx(cls, disabledSecond && 'opacity-50','flex items-center justify-center')} onClick={() => setCurPage(curPage+offset)}>
             <ChevronsRight/>
           </button>
-      }
     </div>
     <ol
       className={clsx('flex-grow overflow-y-auto py-4 px-8 ',

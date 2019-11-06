@@ -302,7 +302,7 @@ const Extendable = (props)=> {
         // top: ext && 'auto',
         // right:ext && 'auto',
         // bottom:ext && 'auto',
-        height: ext ? '80vh':null,
+        height: ext ? '75vh':null,
         maxHeight: 600,
         maxWidth: 700,
         opacity,
@@ -408,7 +408,7 @@ export default function TagCloud(props) {
       .sort((a,b) => a.weight - b.weight)
 
       return (
-      <div className={className}>
+      <div className={className} style={style}>
       <Flipper
         flipKey={`${nodes.map(d => d.key).join(',') }${key}`}
         className={clsx('masonry-layout overflow-y-auto flex-grow',

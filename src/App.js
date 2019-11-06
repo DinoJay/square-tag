@@ -55,7 +55,7 @@ const fn = d => inputStr==='' || d.title && d.title.toLowerCase && d.title.toLow
       <TimeLine
         timeDim={timeStr}
         initData={initData}
-        className="mb-3"
+        className="mb-3 flex-shrink-0"
         onClick={(d) => {
           console.log('d', d);
           setKeyData([keyData[0], d.docs, d.key, timeStr==='year' ? 'month': 'year'])
@@ -63,11 +63,12 @@ const fn = d => inputStr==='' || d.title && d.title.toLowerCase && d.title.toLow
         selectedKey={keyData[2]} data={keyData[1]}
       />
       <div className="relative flex-grow flex flex-col lg:flex-row flex-col lg:justify-center overflow-y-hidden"
-      >
+      style={{minHeight:0, maxHeight:800}}>
         <TagCloud
           selectedKeys={keys}
           pages={pages}
-          className="overflow-y-auto w-auto lg:w-1/2 flex-grow "
+          style={{flex:200}}
+          className="overflow-y-auto flex-grow flex flex-col"
           data={slicedData}
           initData={initData}
           setData={(k)=> {
@@ -77,13 +78,12 @@ const fn = d => inputStr==='' || d.title && d.title.toLowerCase && d.title.toLow
           }}
           resetData={spliceData}
         />
-        <div className=" bg-yellow-100 z-10 flex flex-col"
+        <div className="bg-yellow-100 z-10 flex flex-col"
           style={{
-            minHeight: 0,
+            minHeight: '20%',
             // minWidth: 0,
-            flex: `1 0 ${!gh ? 20:100}%`,
-            transition: 'all 300ms'}}
-          >
+            flex: `0 0 ${!gh ? 20:100}%`,
+            transition: 'all 300ms'}} >
           <div className="flex my-1">
             <button className="border-2 rounded-full "
               onClick={() => setGh(!gh? 1:0)}>

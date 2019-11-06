@@ -59,48 +59,50 @@ export default function TimeLine(props) {
 
   const cache = React.useRef([]);
 
-  return ( <Flipper flipKey={cache.current.length} className={clsx(className, 'flex flex-wrap')}>
+  return ( <Flipper flipKey={cache.current.length} className={clsx(className, 'flex')}>
     {cache.current.length !== 0 &&
-      <div className="rounded-full px-1 flex items-center border m-1 flex-wrap"
+      <div className="rounded-full px-1 flex items-center border m-1 sm:flex-wrap"
       onClick={() => {
       onClick({docs: cache.current.pop(), key: null })
     }}>
       <button><ArrowLeft className="m-1 text-red"/></button>
     </div>
     }
+    <div className="flex-grow flex sm:flex-wrap overflow-x-auto">
     {groupedData
-      .map(d =>
-        <Flipped flipId={d.key}
-        >
+        .map(d =>
+          <Flipped flipId={d.key}
+          >
           <button
             key={d.key}
             disabled={cache.current.length >0}
             onClick={!selectedKey ? (() => {
-            onClick(d)
-            cache.current.push(data);
-          }):undefined} className={
-          clsx('rounded-full flex items-center border m-1',
-               'border-2 border-black p-2 flex-grow cursor-pointer' ) }
-          >
-          {cache.current.length === 0 &&<div>{d.key}</div>}
-          <div className="flex-grow flex flex-wrap ">
-            {( cache.current.length>0) && d.value.map(d =>
-              <Flipped flipId={d.key}
+              onClick(d)
+              cache.current.push(data);
+            }):undefined} className={
+              clsx('rounded-full flex items-center border m-1',
+                'border-2 border-black p-2 flex-grow cursor-pointer sm:flex-wrap' ) }
               >
-              <button
-                onClick={() => {
+                {cache.current.length === 0 &&<div>{d.key}</div>}
+          <div className="flex-grow flex sm:flex-wrap ">
+          {( cache.current.length>0) && d.value.map(d =>
+            <Flipped flipId={d.key}
+            >
+            <button
+              onClick={() => {
                 onClick(d)
                 cache.current.push(data);
               }}
               className="mx-1 px-1 mb-1 rounded flex-grow border">
-                {d.key}
-              </button>
-            </Flipped>)
-            }
-          </div>
-        </button>
-      </Flipped>
-      )}
+              {d.key}
+            </button>
+              </Flipped>)
+          }
+        </div>
+      </button>
+          </Flipped>
+        )}
+    </div>
     </Flipper>
   )
 }
