@@ -3,8 +3,8 @@ body {
   position: fixed;
   height: 100%;
   width: 100%;
+  overflow: auto;
 }
-
 
 .App {
   @apply .bg-yellow-200;
