@@ -43,7 +43,7 @@ const angle = d => {
 
 
 const MoreTags = (props)=> {
-  const {tags, className, selectedKeys, onAdd}=props
+  const {tags, className, selectedKeys, onAdd, zoomed}=props
   const [ext, setExt] = useState(false);
   const slicedTags =  sortBy(sortBy(tags.filter(d => !selectedKeys.includes(d.key)).slice(0, ext ? 100: 10)), d => d.value.length).reverse();
 
@@ -53,11 +53,11 @@ const MoreTags = (props)=> {
 
   return <div className={
     clsx('absolute bottom-0 bg-white border-t-2 flex p-1 overflow-y-auto z-50 w-full', className,
-      ext && 'p-2') }
+      ext && 'p-2', zoomed? 'opacity-0': 'opacity-100') }
       style={{transition: 'all 300ms', maxHeight:ext ? '50%': '8rem',
     }}>
     <div
-      className="h-full w-full flex flex-shrink-1 truncate overflow-hidden"
+      className={ clsx("h-full w-full flex flex-shrink-1 truncate overflow-hidden" ) }
       style={{transition: 'all 300ms', display: ext && 'grid',
         gridTemplateColumns: ext && 'auto auto auto auto',
       }}
@@ -98,7 +98,8 @@ const DocPreview = (props) => {
 
   return(
     <div style={{ ...style, transition: 'all 300ms',width: size, height: size}}
-        className="absolute bg-yellow-100 overflow-hidden flex items-center justify-center rounded-full border-2 ">
+      className="absolute bg-yellow-100 overflow-hidden flex items-center justify-center rounded-full border-2"
+    >
         <div className="text-3xl text-center" style={{minWidth: '20%'}}>
           {values.filter(d => d.tags.find(t => selectedKeys.includes(t))).length}
         </div>
@@ -111,8 +112,8 @@ const DocPreview = (props) => {
               className="m-1 flex items-center pb-1 border-b-2
                          border-solid border-gray-300 overflow-x-hidden"
             >
-                 <img alt="doc" src={fileIconSrc} width={zoomed? 50:70}
-                  height={zoomed ? 50 : 70}
+                 <img alt="doc" src={fileIconSrc} width={zoomed? 40:40}
+                  height={zoomed ? 40 : 40}
                 />
               <a target="_blank" href={d.url}>{d.title}</a>
             </div>
@@ -187,18 +188,18 @@ const pieHook = ({fData, zoomed, onSelectTag, onTagChange, cache, ref, innerRad,
       .text(d => !zoomed ? d.data.key:null);
 
 
-    groupWithUpdate
-      .append('text')
-      .merge(groupWithData.select('text.remove'))
-      .on('click', d => onTagChange(d.data))
-      .attr('class', 'cursor-pointer remove fill-current font-bold text-black text-xl ')
-      .attr('dy', '0.33em')
-      // .attr('dx', '0.53em')
-      .attr('text-anchor', 'middle')
-      .attr('transform', a =>
-        `translate( ${bigArc.centroid(a)} ) rotate(${angle(a)})`
-      )
-      .text(!zoomed ? '◔':null);
+    // groupWithUpdate
+    //   .append('text')
+    //   .merge(groupWithData.select('text.remove'))
+    //   .on('click', d => onTagChange(d.data))
+    //   .attr('class', 'cursor-pointer remove fill-current font-bold text-black text-xl ')
+    //   .attr('dy', '0.33em')
+    //   // .attr('dx', '0.53em')
+    //   .attr('text-anchor', 'middle')
+    //   .attr('transform', a =>
+    //     `translate( ${bigArc.centroid(a)} ) rotate(${angle(a)})`
+    //   )
+    //   .text(!zoomed ? '◔':null);
 
 }
 
@@ -206,7 +207,7 @@ const pieHook = ({fData, zoomed, onSelectTag, onTagChange, cache, ref, innerRad,
 
 const Pie = props => {
 
-  const {selectedKeys, w, h, onTagChange, id, innerRad, radius, tags, zoomed,
+  const {selectedKeys, w, h, className, onTagChange, id, innerRad, radius, tags, zoomed,
           onSelectTag} = props
 
   const fData= tags.filter(t => t.key !== id && selectedKeys.includes(t.key))
@@ -222,7 +223,7 @@ const Pie = props => {
     }
   );
 
-  return <svg className="flex-grow overflow-visible" >
+  return <svg className={ clsx( "flex-grow overflow-visible", className ) } >
     <g
       ref={ref}
       transform={`translate(${w/2}, ${radius})`}/>
@@ -251,16 +252,19 @@ const TagDetail = (props)=> {
   const onSelectTag = d => setSelectedKeys([d.key])
 
   const pad=0
+  console.log('w', w);
+  const big = w>500;
+  const rad = big ? w:w+105;
   const zoomed = radFac ===ZOOMED_FAC;
-  const radius = (zoomed ? w:h)/2.3 -pad;
+  const radius = (zoomed ? rad:h-30)/2.3 -pad;
   const innerRad = radius * radFac;
   const innerRadPad = 0;
 
   return <div className={ clsx(`bg-white relative h-full w-full flex flex-col
       items-between`, className) }>
         <button className="z-10 mx-2 right-0 top-0 my-1" onClick={onClose}><X/></button>
-    <div {...bind} className="flex flex-col flex-grow relative z-20">
-      <Pie {...props} {...{radius, w, h, pad, onTagChange, innerRad, zoomed,
+    <div {...bind} className="flex flex-col flex-grow relative z-20 overflow-hidden">
+      <Pie {...props} className={zoomed && 'overflow-hidden z-10 pointer-events-none'} {...{radius, w, h, pad, onTagChange, innerRad, zoomed,
                 tags, selectedKeys, onSelectTag, }}
       />
       <DocPreview
@@ -274,13 +278,13 @@ const TagDetail = (props)=> {
           left: w/2 -innerRad,
           top: radius -innerRad,
           width: innerRad *2,
-          height:innerRad *2,
+          height: innerRad *2,
         // shapeOutside: "circle(70% at 0% 50%) border-box"
         }}
       >
       </DocPreview>
     </div>
-    <MoreTags selectedKeys={selectedKeys} onAdd={onTagChange} className="" tags={nested}/>
+    <MoreTags selectedKeys={selectedKeys} zoomed={zoomed} onAdd={onTagChange} className="" tags={nested}/>
   </div>
 }
 
@@ -290,6 +294,7 @@ const Extendable = (props)=> {
   return <Flipped flipId={id}
     onAppear={onAppear}
     onExit={onExit}
+    className="relative"
   >
     <div onClick={onClick}
       className={clsx( 'overflow-hidden masonry-el bg-yellow-100 border-2 border-black' ,
@@ -302,11 +307,11 @@ const Extendable = (props)=> {
         // top: ext && 'auto',
         // right:ext && 'auto',
         // bottom:ext && 'auto',
-        height: ext ? '75vh':null,
+        height: ext ? '70%':null,
         maxHeight: 600,
         maxWidth: 700,
         opacity,
-        width:ext?'100vw':null,
+        width:ext?'95%':null,
         // marginLeft: ext && 'auto',
         // marginRight: ext && 'auto',
         boxShadow: '5px 5px gray'
